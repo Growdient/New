@@ -57,7 +57,12 @@ export default function AboutHero() {
     const splits: SplitText[] = []
     let scrollTl: gsap.core.Timeline
 
-    const rafId = requestAnimationFrame(() => {
+    // rAF fires BEFORE useEffect (browser render pipeline), so:
+    //   1. scrollTl would be created before destroyIX3Animations() kills it
+    //   2. scrollTl would be created before lenis.scrollTo(0) resets scroll
+    // setTimeout(100) ensures all useEffects have settled (scroll reset done,
+    // destroyIX3 done) before we init ScrollTrigger measurements.
+    const timerId = setTimeout(() => {
       ScrollTrigger.refresh()
 
       // ─── Scroll: image expands → fullscreen → blur ─────────────────────
@@ -112,7 +117,7 @@ export default function AboutHero() {
     })
 
     return () => {
-      cancelAnimationFrame(rafId)
+      clearTimeout(timerId)
       loadTl.kill()
       scrollTl?.kill()
       splits.forEach((sp) => sp.revert())
