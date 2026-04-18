@@ -1,12 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { fontRaveoDisplay, font42DotSans, fontInstrumentSerif, fontGeistMono, fontInter } from '@/lib/fonts'
 import LenisProvider from '@/components/layout/LenisProvider'
-import AnimationsProvider from '@/components/layout/AnimationsProvider'
-import PageTransition from '@/components/layout/PageTransition'
-import Navbar from '@/components/layout/Navbar'
-import ConditionalFooter from '@/components/layout/ConditionalFooter'
-import CustomCursor from '@/components/effects/CustomCursor'
-import GrainOverlay from '@/components/effects/GrainOverlay'
+import SiteShell from '@/components/layout/SiteShell'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -80,14 +75,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     >
       <body>
         <LenisProvider>
-          <AnimationsProvider />
-          <GrainOverlay />
-          <CustomCursor />
-          <Navbar />
-          <PageTransition>
-            {children}
-            <ConditionalFooter />
-          </PageTransition>
+          <SiteShell>{children}</SiteShell>
         </LenisProvider>
       </body>
     </html>
