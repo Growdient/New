@@ -50,10 +50,6 @@ export default function AboutHero() {
       .to(leftText,  { x: 0, duration: 1.1, ease: 'power2.out' }, 0.05)
       .to(rightText, { x: 0, duration: 1.1, ease: 'power2.out' }, 0.05)
 
-    const initW  = getComputedStyle(imageWrap).width
-    const initH  = getComputedStyle(imageWrap).height
-    const initBR = getComputedStyle(imageWrap).borderRadius
-
     const splits: SplitText[] = []
     let scrollTl: gsap.core.Timeline
 
@@ -62,7 +58,14 @@ export default function AboutHero() {
     //   2. scrollTl would be created before lenis.scrollTo(0) resets scroll
     // setTimeout(100) ensures all useEffects have settled (scroll reset done,
     // destroyIX3 done) before we init ScrollTrigger measurements.
+    // getComputedStyle is read INSIDE the timer — CSS chunks load async during
+    // client navigation in production; at t=0 (useLayoutEffect) styles may not
+    // yet be applied, giving wrong initW/initH values.
     const timerId = setTimeout(() => {
+      const initW  = getComputedStyle(imageWrap).width
+      const initH  = getComputedStyle(imageWrap).height
+      const initBR = getComputedStyle(imageWrap).borderRadius
+
       ScrollTrigger.refresh()
 
       // ─── Scroll: image expands → fullscreen → blur ─────────────────────
