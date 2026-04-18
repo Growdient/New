@@ -53,19 +53,16 @@ export default function AboutHero() {
     const splits: SplitText[] = []
     let scrollTl: gsap.core.Timeline
 
-    // rAF fires BEFORE useEffect (browser render pipeline), so:
-    //   1. scrollTl would be created before destroyIX3Animations() kills it
-    //   2. scrollTl would be created before lenis.scrollTo(0) resets scroll
-    // setTimeout(100) ensures all useEffects have settled (scroll reset done,
-    // destroyIX3 done) before we init ScrollTrigger measurements.
-    // getComputedStyle is read INSIDE the timer — CSS chunks load async during
-    // client navigation in production; at t=0 (useLayoutEffect) styles may not
-    // yet be applied, giving wrong initW/initH values.
+    // setTimeout(100) lets all useEffects settle (scroll reset, destroyIX3) before
+    // we measure layout. CSS module chunks load async on client navigation in
+    // production — at t=0 styles may not yet be applied.
+    //
+    // We use `to()` (not `fromTo`) + `invalidateOnRefresh: true` so that when
+    // PageTransition.onComplete fires ScrollTrigger.refresh() at ~700ms (curtain
+    // gone, CSS definitely loaded), the `onRefresh` callback clears GSAP inline
+    // styles and `invalidate()` re-reads true CSS dimensions as the "from" state.
+    // This is the only moment we can guarantee correct values before the first scroll.
     const timerId = setTimeout(() => {
-      const initW  = getComputedStyle(imageWrap).width
-      const initH  = getComputedStyle(imageWrap).height
-      const initBR = getComputedStyle(imageWrap).borderRadius
-
       ScrollTrigger.refresh()
 
       // ─── Scroll: image expands → fullscreen → blur ─────────────────────
@@ -75,15 +72,17 @@ export default function AboutHero() {
           start: 'top top',
           end: '+=100%',
           scrub: true,
+          invalidateOnRefresh: true,
+          onRefresh: () => {
+            // Clear GSAP inline styles so the element's CSS values are the "from"
+            // state when tweens re-initialize after invalidate().
+            gsap.set(imageWrap, { clearProps: 'width,height,borderRadius' })
+          },
         },
       })
       scrollTl
-        .fromTo(imageWrap,
-          { width: initW, height: initH },
-          { width: '100vw', height: '100vh', duration: 0.6, ease: 'none' }, 0)
-        .fromTo(imageWrap,
-          { borderRadius: initBR },
-          { borderRadius: '0px', duration: 0.6, ease: 'none' }, 0)
+        .to(imageWrap, { width: '100vw', height: '100vh', duration: 0.6, ease: 'none' }, 0)
+        .to(imageWrap, { borderRadius: '0px', duration: 0.6, ease: 'none' }, 0)
         .fromTo(leftText,  { x: 0 }, { x: '-45vw', duration: 0.45, ease: 'none' }, 0)
         .fromTo(rightText, { x: 0 }, { x:  '45vw', duration: 0.45, ease: 'none' }, 0)
         .fromTo(imageWrap, { filter: 'blur(0px)' }, { filter: 'blur(24px)', duration: 0.4, ease: 'sine.in' }, 0.6)
