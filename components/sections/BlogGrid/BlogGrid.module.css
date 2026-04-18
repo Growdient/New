@@ -1,0 +1,63 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOG GRID — /blog page grid section
+   Dark bg, featured card full-width + 3-col grid below
+   ────────────────────────────────────────────────────────────────────────────── */
+
+.section {
+  background: var(--color-bg);
+  padding-bottom: 120px;
+}
+
+.container {
+  padding-inline: 20px;
+}
+
+/* ─── FEATURED ─── */
+.featured {
+  padding-bottom: var(--space-16);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-16);
+}
+
+/* ─── GRID ─── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-12) var(--space-8);
+}
+
+.cardWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-10) var(--space-6);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-bottom: 80px;
+  }
+
+  .featured {
+    padding-bottom: var(--space-10);
+    margin-bottom: var(--space-10);
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8) var(--space-5);
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}

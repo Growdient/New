@@ -1,0 +1,237 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVBAR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── CHECKBOX TOGGLE — скрытый, но функциональный ─── */
+.navToggle {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  height: 86px;
+  display: flex;
+  align-items: center;
+  padding-inline: 20px;
+}
+
+
+.inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: var(--container-max);
+}
+
+/* ─── ПИЛЮЛЯ ─── */
+.pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: rgba(12, 12, 14, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(248, 247, 243, 0.10);
+  border-radius: var(--radius-md);
+  padding: 12px 17px;
+  transition:
+    background-color var(--dur-normal) var(--ease-quart-out),
+    border-color var(--dur-normal) var(--ease-quart-out);
+}
+
+.pill:hover {
+  border-color: rgba(248, 247, 243, 0.18);
+}
+
+/* ─── HAMBURGER (label) ─── */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  padding: 9px;
+  flex-shrink: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.bar {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--color-text-64);
+  transform-origin: center;
+  transition:
+    transform var(--dur-normal) var(--ease-quart-out),
+    opacity var(--dur-normal) var(--ease-quart-out),
+    background-color var(--dur-fast) var(--ease-quart-out);
+}
+
+.hamburger:hover .bar {
+  background: var(--color-text-100);
+}
+
+/* ─── СОСТОЯНИЕ ОТКРЫТО — через :checked ─── */
+
+/* Первая полоска → / */
+.navToggle:checked + .navbar .bar:first-child {
+  transform: translateY(3.75px) rotate(45deg);
+  background: var(--color-text-100);
+}
+
+/* Вторая полоска → \ */
+.navToggle:checked + .navbar .bar:last-child {
+  transform: translateY(-3.75px) rotate(-45deg);
+  background: var(--color-text-100);
+}
+
+/* ─── ЛОГОТИП ─── */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: opacity var(--dur-fast) var(--ease-quart-out);
+}
+
+.logo:hover { opacity: 0.72; }
+
+.logoSvg {
+  display: block;
+  height: 21.6px;
+  width: auto;
+}
+
+@media (max-width: 640px) {
+  .logoSvg { height: 22.3px; }
+}
+
+/* ─── CTA КНОПКА ─── */
+.ctaButton {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(248, 247, 243, 0.82);
+  background: rgba(88, 88, 100, 0.55);
+  border: 1px solid rgba(248, 247, 243, 0.14);
+  border-radius: var(--radius-md);
+  padding: 7px 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  touch-action: manipulation;
+  transition:
+    color var(--dur-fast) var(--ease-quart-out),
+    border-color var(--dur-fast) var(--ease-quart-out),
+    background-color var(--dur-fast) var(--ease-quart-out);
+}
+
+.ctaButton:hover {
+  color: var(--color-white);
+  border-color: rgba(248, 247, 243, 0.40);
+  background-color: rgba(100, 100, 115, 0.70);
+}
+
+/* ─── MOBILE MENU ─── */
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-fixed) - 1);
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  padding: 100px 24px 40px;
+  pointer-events: none;
+  /* Clip from top → reveal downward (locomotive.ca style) */
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.65s var(--ease-inout);
+}
+
+/* Panel open */
+.navToggle:checked ~ .mobileMenu {
+  pointer-events: all;
+  clip-path: inset(0 0 0% 0);
+}
+
+/* ─── NAV LINKS ─── */
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+  flex: 1;
+}
+
+.mobileNavLink {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--color-text-100);
+  text-decoration: none;
+  line-height: var(--leading-tight);
+  /* Start hidden — slide up on open */
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity    0.5s var(--ease-expo-out),
+    transform  0.5s var(--ease-expo-out),
+    color      var(--dur-fast) var(--ease-quart-out);
+}
+
+/* Stagger delays on open */
+.navToggle:checked ~ .mobileMenu .mobileNavLink:nth-child(1) { transition-delay: 0.22s; }
+.navToggle:checked ~ .mobileMenu .mobileNavLink:nth-child(2) { transition-delay: 0.30s; }
+.navToggle:checked ~ .mobileMenu .mobileNavLink:nth-child(3) { transition-delay: 0.38s; }
+.navToggle:checked ~ .mobileMenu .mobileNavLink:nth-child(4) { transition-delay: 0.46s; }
+
+.navToggle:checked ~ .mobileMenu .mobileNavLink {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileNavLink:hover { color: var(--color-text-100); }
+
+/* ─── FOOTER ─── */
+.mobileFooter {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--color-text-32);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-expo-out);
+}
+
+.navToggle:checked ~ .mobileMenu .mobileFooter {
+  opacity: 1;
+  transition-delay: 0.54s;
+}
+
+/* ─── MOBILE OVERRIDES ≤ 640px — after base styles to win the cascade ─── */
+@media (max-width: 640px) {
+  .navbar        { padding-inline: 12px; }
+  .pill          { width: 100%; justify-content: flex-start; gap: 0; padding-inline: 12px; padding-block: 8px; border-radius: 10px; }
+  .logo          { flex: 1; min-width: 0; margin-left: 6px; margin-right: 6px; }
+  .logoSvg       { width: 100%; height: auto; }
+  .ctaButton     { flex-shrink: 0; }
+  .mobileNavLink { font-size: calc(var(--text-h1) * 2); }
+}

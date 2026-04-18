@@ -1,0 +1,134 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   PROJECT CARD — growdient.com точная реализация
+   Структура: изображение сверху → название + сервис под изображением
+   Название: 42 Dotsans ~22px, mixed case
+   Сервис:   Geist Mono 10px, uppercase
+   ────────────────────────────────────────────────────────────────────────────── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--color-text-100);
+  position: relative;
+}
+
+/* ─── IMAGE WRAPPER ─── */
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 548px;
+  overflow: hidden;
+  background: var(--color-surface);
+  border-radius: 16px;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 900ms var(--ease-expo-out);
+  will-change: transform;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  background: var(--color-surface-2);
+}
+
+.card:hover .image {
+  transform: scale(1.04);
+}
+
+/* ─── HOVER OVERLAY — лёгкий тинт, без текста ─── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(16, 16, 18, 0.18);
+  opacity: 0;
+  transition: opacity 400ms var(--ease-quart-out);
+  pointer-events: none;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+/* ─── INDEX NUMBER ─── */
+.index {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.1em;
+  color: var(--color-text-48);
+  z-index: 1;
+}
+
+/* ─── CONTENT — под изображением ─── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+}
+
+/* ─── НАЗВАНИЕ — Instrument Serif, 40px ─── */
+.title {
+  font-family: var(--font-display);   /* = Instrument Serif */
+  font-size: 2.5rem;                  /* 40px */
+  font-weight: var(--weight-regular);
+  letter-spacing: -0.5px;
+  color: var(--color-text-100);
+  line-height: 1.1;
+  margin: 0;
+  text-transform: none;
+  transition: color var(--dur-fast) var(--ease-quart-out);
+}
+
+.card:hover .title {
+  color: var(--color-text-88);
+}
+
+/* ─── СЕРВИС — 42 Dotsans 15px, mixed case ─── */
+.service {
+  font-family: var(--font-body);      /* 42 Dotsans */
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-text-64);
+  line-height: 1.4;
+  display: block;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .imageWrap {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 640px) {
+  .imageWrap {
+    height: auto;
+    aspect-ratio: 3 / 2;
+    border-radius: 12px;
+  }
+
+  /* 40px → fluid, минимум 24px на 375px */
+  .title {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+  }
+
+  .content {
+    gap: 4px;
+  }
+
+  /* Mobile: чуть меньше чем десктоп */
+  .service {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,196 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ProjectBody — white content sections: Brand Systems, Digital, Motion & Quote
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Outer wrapper ──────────────────────────────────────────────────────── */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+/* ── Shared section shell ───────────────────────────────────────────────── */
+
+.section {
+  background: #ffffff;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Image layouts ──────────────────────────────────────────────────────── */
+
+.imagesTwoUp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.imagesTwoUp .imageWrap {
+  height: clamp(320px, 44vw, 680px);
+}
+
+.imagesFull {
+  display: flex;
+  flex-direction: column;
+}
+
+.imagesFull .imageWrap {
+  height: clamp(480px, 96vh, 1140px);
+}
+
+.imagesMulti {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+/* When multi has 2+ images, show all side-by-side equal */
+@supports (display: grid) {
+  .imagesMulti {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .imagesMulti .imageWrap {
+    height: clamp(320px, 44vw, 680px);
+  }
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+/* ── Text block ─────────────────────────────────────────────────────────── */
+
+.textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 800px;
+  padding: 0 var(--space-4);
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.teaser,
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.teaser {
+  color: var(--color-dark-48);
+}
+
+.sectionLabel {
+  color: var(--color-dark-64);
+}
+
+.bodyText {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+  color: var(--color-dark-64);
+  margin: 0;
+}
+
+/* ── Quote section ──────────────────────────────────────────────────────── */
+
+.quoteSection {
+  background: #ffffff;
+  padding-top: 0;
+  padding-bottom: var(--space-24);
+  overflow: clip;
+}
+
+.quoteInner {
+  max-width: 100%;
+  margin: 0;
+  padding: calc(var(--space-24) - 50px) 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.quoteText {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, var(--text-h1));
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-dark-100);
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.quoteAttrib {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.quoteAuthor {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 400;
+  color: var(--color-dark-100);
+}
+
+.quoteRole {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-dark-48);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .imagesTwoUp,
+  .imagesMulti {
+    grid-template-columns: 1fr;
+  }
+
+  .imagesTwoUp .imageWrap,
+  .imagesFull .imageWrap,
+  .imagesMulti .imageWrap {
+    height: clamp(220px, 60vw, 480px);
+  }
+
+  .imagesMulti .imageWrap:last-child:nth-child(3) {
+    grid-column: auto;
+  }
+
+  .quoteText {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+}

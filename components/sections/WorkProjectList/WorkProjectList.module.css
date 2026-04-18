@@ -1,0 +1,141 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   WORK PROJECT LIST — Alternating 50% staggered column layout
+   Exact match of growdient.com /projects card grid:
+   - flex-direction: column
+   - each item: width 50%
+   - even items: margin-left: auto (pushed right)
+   ────────────────────────────────────────────────────────────────────────────── */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding-bottom: 160px;
+}
+
+/* ── ITEM — 50% width alternating left/right ── */
+.item {
+  width: 50%;
+}
+
+.item:nth-child(even) {
+  margin-left: auto;
+}
+
+/* ── CARD ── */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--color-text-100);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ── IMAGE WRAP — fixed aspect ratio, overflow clip for scale animation ── */
+.imageWrap {
+  position: relative;
+  width: 100%;
+  height: 548px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+.image {
+  object-fit: cover;
+  transition: none; /* GSAP handles transition */
+}
+
+/* Dark overlay — fades in on hover via GSAP */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(16, 16, 18, 0.32);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-surface);
+}
+
+/* ── CONTENT — below image ── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Project name — 40px Instrument Serif (text-h6 equivalent) */
+.title {
+  font-family: var(--font-display);    /* Instrument Serif */
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin: 0;
+  color: var(--color-text-100);
+}
+
+/* Service tag — mixed case */
+.service {
+  font-family: var(--font-body);       /* 42 Dotsans */
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--color-text-64);
+  text-transform: none;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 991px) {
+  .item {
+    width: 60%;
+  }
+
+  .imageWrap {
+    height: 420px;
+  }
+}
+
+@media (max-width: 767px) {
+  .list {
+    gap: 48px;
+    padding-bottom: 80px;
+  }
+
+  .item {
+    width: 80%;
+    margin-left: 0 !important;
+  }
+
+  .imageWrap {
+    height: 300px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  /* Mobile: mixed case, larger size — matches growdient.com mobile */
+  .service {
+    font-size: 13px;
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .item {
+    width: 100%;
+  }
+
+  .imageWrap {
+    height: 240px;
+  }
+}

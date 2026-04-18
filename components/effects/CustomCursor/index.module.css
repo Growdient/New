@@ -1,0 +1,170 @@
+/* ─── Root container ─────────────────────────────────────────────────────── */
+
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ─── Dot ─────────────────────────────────────────────────────────────────── */
+
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--color-white);
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  transition:
+    opacity     200ms ease,
+    transform   200ms ease,
+    width       300ms var(--ease-expo-out),
+    height      300ms var(--ease-expo-out),
+    background  300ms ease;
+}
+
+/* ─── Ring ────────────────────────────────────────────────────────────────── */
+
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(250, 250, 250, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity     300ms ease,
+    width       400ms var(--ease-expo-out),
+    height      400ms var(--ease-expo-out),
+    border-color 300ms ease,
+    background  300ms ease;
+}
+
+/* ─── Label inside ring ───────────────────────────────────────────────────── */
+
+.label {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-white);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+/* ─── State: hidden ───────────────────────────────────────────────────────── */
+
+.dot.hidden,
+.ring.hidden {
+  opacity: 0;
+}
+
+/* ─── State: default ──────────────────────────────────────────────────────── */
+
+.dot.default {
+  opacity: 1;
+  width: 8px;
+  height: 8px;
+}
+
+.ring.default {
+  opacity: 1;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+}
+
+/* ─── State: hover_link ───────────────────────────────────────────────────── */
+
+.dot.hover_link {
+  opacity: 1;
+  width: 4px;
+  height: 4px;
+  background: var(--color-white);
+  mix-blend-mode: difference;
+}
+
+.ring.hover_link {
+  opacity: 1;
+  width: 56px;
+  height: 56px;
+  border-color: rgba(250, 250, 250, 0.8);
+  mix-blend-mode: difference;
+}
+
+/* ─── State: hover_project ────────────────────────────────────────────────── */
+
+.dot.hover_project {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ring.hover_project {
+  opacity: 1;
+  width: 80px;
+  height: 80px;
+  background: var(--color-white);
+  border-color: transparent;
+}
+
+.ring.hover_project .label {
+  opacity: 1;
+  color: var(--color-black);
+}
+
+/* ─── State: hover_video ──────────────────────────────────────────────────── */
+
+.dot.hover_video {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ring.hover_video {
+  opacity: 1;
+  width: 72px;
+  height: 72px;
+  background: var(--color-white);
+  border-color: transparent;
+}
+
+.ring.hover_video .label {
+  opacity: 1;
+  color: var(--color-black);
+}
+
+/* ─── State: hover_drag ───────────────────────────────────────────────────── */
+
+.dot.hover_drag {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ring.hover_drag {
+  opacity: 1;
+  width: 72px;
+  height: 72px;
+  background: var(--color-white);
+  border-color: transparent;
+}
+
+.ring.hover_drag .label {
+  opacity: 1;
+  color: var(--color-black);
+}

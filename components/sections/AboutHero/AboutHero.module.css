@@ -1,0 +1,184 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ABOUT HERO — sticky parallax: split text + expanding center image
+   Reference: growdient.com/about — first viewport with scroll animation
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── SECTION — 100vh sticky + scroll expand + 3×70vh panels ─── */
+.section {
+  position: relative;
+  min-height: 380vh;
+  background-color: var(--color-bg);
+}
+
+/* ─── STICKY viewport ────────────────────────────────────────────────────── */
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sticky::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ─── LEFT TEXT — "WE ARE" ───────────────────────────────────────────────── */
+.leftText {
+  position: absolute;
+  right: calc(50% + 6.5vw + 10px);
+  top: 50%;
+  /* начальное состояние: смещён вправо — GSAP анимирует к x:0 */
+  transform: translateY(-50%) translateX(80px);
+  z-index: 2;
+  will-change: transform;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6.5vw, 7.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-text-100);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── RIGHT TEXT — "GROWDIENT" ───────────────────────────────────────────── */
+.rightText {
+  position: absolute;
+  left: calc(50% + 6.5vw + 10px);
+  top: 50%;
+  /* начальное состояние: смещён влево — GSAP анимирует к x:0 */
+  transform: translateY(-50%) translateX(-80px);
+  z-index: 2;
+  will-change: transform;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6.5vw, 7.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-text-100);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── CENTER IMAGE WRAP — starts small, expands on scroll ───────────────── */
+.imageWrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* opacity:0 — GSAP покажет при входном animate; transform — через xPercent/yPercent */
+  opacity: 0;
+  width: clamp(9rem, 11vw, 14rem);    /* ~144px at 1310px — matches reference */
+  height: clamp(12rem, 15vw, 18rem);  /* ~195px — portrait 3:4 */
+  overflow: hidden;
+  z-index: 1;
+  will-change: transform, width, height, filter;
+  border-radius: clamp(1.25rem, 2.5vw, 2.5rem);  /* большое скругление */
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--dur-slow) var(--ease-expo-out);
+}
+
+/* ─── DARK OVERLAY ───────────────────────────────────────────────────────── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-bg);
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ─── SR-ONLY h1 ─────────────────────────────────────────────────────────── */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ─── PHRASE PANELS — скролятся поверх блюра ────────────────────────────── */
+.panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: calc(15vh - 54px) clamp(2rem, 8vw, 8rem);
+}
+
+:global(.word-wrap) {
+  display: inline-block;
+}
+
+.panelText {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 70px);
+  font-weight: 400;
+  color: var(--color-text-100);
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  max-width: 900px;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .leftText,
+  .rightText {
+    font-size: clamp(2.25rem, 5.5vw, 4rem);
+  }
+  /* right/left остаются calc(50% + 6.5vw) — масштабируется автоматически */
+}
+
+@media (max-width: 768px) {
+  .leftText,
+  .rightText {
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+  }
+
+  .leftText  { right: calc(50% + 9vw); }
+  .rightText { left:  calc(50% + 9vw); }
+
+  .imageWrap {
+    width: 28vw;
+    height: 38vw;
+    border-radius: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .panelInner {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .leftText,
+  .rightText {
+    display: none;
+  }
+
+  .imageWrap {
+    width: 68vw;
+    height: 90vw;
+    border-radius: 1.25rem;
+  }
+}

@@ -1,0 +1,141 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ABOUT PHILOSOPHY — "We build where human instinct meets machine intelligence"
+   Dark bg, alternating image/copy, big headline with char scrub reveal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.section {
+  background-color: var(--color-bg);
+  overflow: clip;
+}
+
+/* ─── HEADLINE WRAP ──────────────────────────────────────────────────────── */
+.headlineWrap {
+  padding: clamp(6rem, 12vh, 11rem) clamp(2rem, 6vw, 6rem) clamp(5rem, 9vh, 8rem);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.headlineContainer {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.5vw, 6.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--color-text-100);
+  max-width: 16ch;
+  margin: 0;
+  will-change: opacity;
+}
+
+/* ─── STORY GRID — left image + right copy ───────────────────────────────── */
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  padding: clamp(5rem, 8vh, 8rem) clamp(2rem, 6vw, 6rem);
+  max-width: 1600px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ─── IMAGE CONTAINERS ───────────────────────────────────────────────────── */
+.leftImageWrap,
+.rightImageWrap {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.imageOuter {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.storyImage {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s var(--ease-expo-out);
+}
+
+.leftImageWrap:hover .storyImage,
+.rightImageWrap:hover .storyImage {
+  transform: scale(1.04);
+}
+
+/* ─── RIGHT COPY ─────────────────────────────────────────────────────────── */
+.storyRight {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vh, 3.5rem);
+  padding-top: clamp(2rem, 5vh, 5rem);
+}
+
+.subTag {
+  color: var(--color-text-48);
+}
+
+.storyBody {
+  max-width: 52ch;
+}
+
+.rightImageWrap {
+  margin-top: clamp(1rem, 3vh, 2rem);
+}
+
+/* ─── TRACK TEXT SECTION — full-width char scrub ─────────────────────────── */
+.trackWrap {
+  padding: clamp(6rem, 12vh, 12rem) clamp(2rem, 6vw, 6rem);
+  border-top: 1px solid var(--color-border);
+}
+
+.trackInner {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.trackText {
+  /* text-track-about provides base styles from typography.css */
+  font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  font-family: var(--font-body);
+  font-weight: 400;
+  max-width: 68ch;
+  color: var(--color-text-100);
+  will-change: opacity;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .storyRight {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .headlineWrap {
+    padding: 5rem 1.5rem 4rem;
+  }
+
+  .storyGrid {
+    padding: 4rem 1.5rem;
+  }
+
+  .trackWrap {
+    padding: 5rem 1.5rem;
+  }
+
+  .headline {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+}

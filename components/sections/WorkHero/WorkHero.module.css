@@ -1,0 +1,76 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   WORK HERO — Sticky centered headline
+   Mirrors growdient.com /projects: sticky 100vh, centered Instrument Serif
+   ────────────────────────────────────────────────────────────────────────────── */
+
+/* Sticky wrapper — 100vh, centers the headline */
+.hero {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Inner sticky container — filter applied HERE (not on .hero) to preserve sticky positioning */
+.sticky {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 48px 32px;
+  will-change: filter, transform;
+}
+
+/* Headline — 88px Instrument Serif, centered, max 682px (exact from growdient.com) */
+.headline {
+  font-family: var(--font-display);          /* Instrument Serif */
+  font-size: 88px;
+  line-height: 76px;
+  font-weight: 400;
+  letter-spacing: -2px;
+  text-align: center;
+  max-width: 682px;
+  color: var(--color-text-100);
+  margin: 0;
+}
+
+/* Word mask animation — overflow:hidden per word */
+.wordWrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.18em;
+}
+
+.word {
+  display: inline-block;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 991px) {
+  .headline {
+    font-size: 64px;
+    line-height: 58px;
+    letter-spacing: -1.5px;
+  }
+}
+
+@media (max-width: 767px) {
+  .headline {
+    font-size: 51px;
+    line-height: 47px;
+    letter-spacing: -1px;
+  }
+}
+
+@media (max-width: 479px) {
+  .headline {
+    font-size: 39px;
+    line-height: 37px;
+    letter-spacing: -0.5px;
+  }
+}

@@ -1,0 +1,132 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOG HERO — /blog
+   Dark bg, large Instrument Serif headline, word-mask entrance animation
+   ────────────────────────────────────────────────────────────────────────────── */
+
+.hero {
+  background: var(--color-bg);
+  padding-top: 180px;
+  padding-bottom: var(--space-16);
+  overflow: hidden;
+}
+
+.inner {
+  padding-inline: 20px;
+}
+
+/* ─── META ROW ─── */
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+}
+
+.metaLabel,
+.metaCount,
+.metaDivider {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+}
+
+.metaLabel {
+  color: var(--color-text-48);
+}
+
+.metaDivider {
+  color: var(--color-text-16);
+}
+
+.metaCount {
+  color: var(--color-text-32);
+}
+
+/* ─── HEADLINE ─── */
+.headline {
+  margin: 0;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.line {
+  display: inline;
+  font-family: var(--font-display);
+  font-size: 150px;
+  line-height: 1.0;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #000;
+}
+
+.lineAccent {
+  font-style: italic;
+  color: #000;
+}
+
+/* Word mask animation */
+.wordWrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.18em;
+}
+
+.word {
+  display: inline-block;
+}
+
+/* ─── SUBTITLE ─── */
+.subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.2vw, 1.0625rem);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-48);
+  margin: 0;
+  max-width: 440px;
+}
+
+/* ─── DIVIDER ─── */
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin-top: var(--space-16);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 991px) {
+  .hero {
+    padding-top: 140px;
+  }
+
+  .line {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding-top: 120px;
+    padding-bottom: var(--space-10);
+  }
+
+  .line {
+    font-size: clamp(2rem, 9vw, 3.5rem);
+    line-height: 0.92;
+  }
+
+  .divider {
+    margin-top: var(--space-10);
+  }
+}
+
+@media (max-width: 479px) {
+  .hero {
+    padding-top: 100px;
+  }
+
+  .line {
+    font-size: 2.25rem;
+  }
+}

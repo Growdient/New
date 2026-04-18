@@ -1,0 +1,39 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOG ARTICLE HERO — full-bleed cover image only
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.hero {
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* ─── COVER IMAGE — full bleed, touches top of page ─────────────────────── */
+
+.coverOuter {
+  width: 100%;
+  height: clamp(52vh, 70vh, 80vh);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Extra height so parallax doesn't reveal edges */
+.coverInner {
+  position: absolute;
+  inset: 0;
+  height: 130%;
+  top: -15%;
+}
+
+.coverImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .coverOuter {
+    height: 55vw;
+    min-height: 280px;
+  }
+}

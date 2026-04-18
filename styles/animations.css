@@ -1,0 +1,140 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   GROWDIENT v2 — CSS ANIMATIONS
+   Marquee ticker · Grain overlay · Cursor · Underline draw
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── MARQUEE ────────────────────────────────────────────────────────────────
+   Two tracks: forward + backward
+   GSAP overrides duration on hover (speed up/slow down)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@keyframes marquee-forward {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-backward {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-forward 40s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track--reverse {
+  animation: marquee-backward 40s linear infinite;
+}
+
+.marquee-track:hover,
+.marquee-wrapper:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  flex-shrink: 0;
+  padding-inline: var(--space-6);
+  white-space: nowrap;
+}
+
+/* ─── UNDERLINE DRAW-IN ──────────────────────────────────────────────────────
+   Locomotive signature link underline that draws from right on hover
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.underline-draw {
+  position: relative;
+  text-decoration: none;
+}
+
+.underline-draw::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-normal) var(--ease-quart-out);
+}
+
+.underline-draw:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ─── REVEAL CLASSES ─────────────────────────────────────────────────────────
+   Initial states for GSAP-driven animations
+   (JS sets these before animating)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.reveal-ready {
+  overflow: hidden;
+}
+
+.reveal-line {
+  display: block;
+  will-change: transform, opacity;
+}
+
+/* ─── FADE-UP (CSS fallback / reduced motion) ─────────────────────────────── */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp var(--dur-slow) var(--ease-expo-out) both;
+}
+
+/* ─── PAGE TRANSITION OVERLAY ────────────────────────────────────────────────
+   GSAP curtain element — scaleY 0→1→0
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-transition);
+  background: var(--color-bg);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  pointer-events: none;
+}
+
+/* ─── SPIN (loading) ────────────────────────────────────────────────────── */
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── PREFERS REDUCED MOTION ─────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+}

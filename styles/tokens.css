@@ -1,0 +1,185 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   GROWDIENT v2 — DESIGN TOKENS
+   Source: growdient.com Webflow export + locomotive.ca motion DNA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ═══ COLORS — exact values from growdient.com CSS ═══════════════════════ */
+
+  /* Body bg = dark #101012, hero section = cream #edebe7 */
+  --color-bg:            #101012;
+  --color-surface:       #1a1a1c;
+  --color-surface-2:     #222224;
+  --color-cream:         #edebe7;   /* hero section background */
+  --color-cream-2:       #e5e3e3;   /* services section background */
+  --color-white:         #f8f7f3;   /* light text color */
+  --color-black:         #101012;
+
+  /* Light text (on dark sections) — from --_colors---color--light */
+  --color-text-100:      rgba(248, 247, 243, 1.00);
+  --color-text-88:       color-mix(in srgb, #f8f7f3 88%, transparent);
+  --color-text-64:       color-mix(in srgb, #f8f7f3 64%, transparent);
+  --color-text-48:       color-mix(in srgb, #f8f7f3 48%, transparent);
+  --color-text-32:       color-mix(in srgb, #f8f7f3 32%, transparent);
+  --color-text-16:       color-mix(in srgb, #f8f7f3 16%, transparent);
+
+  /* Dark text (on cream/light sections) — from --_colors---color--dark */
+  --color-dark-100:      rgba(16, 16, 18, 1.00);
+  --color-dark-88:       color-mix(in srgb, #101012 88%, transparent);
+  --color-dark-64:       color-mix(in srgb, #101012 64%, transparent);
+  --color-dark-48:       color-mix(in srgb, #101012 48%, transparent);
+  --color-dark-32:       color-mix(in srgb, #101012 32%, transparent);
+  --color-dark-16:       color-mix(in srgb, #101012 16%, transparent);
+
+  /* Borders — on dark bg */
+  --color-border:        rgba(248, 247, 243, 0.08);
+  --color-border-hover:  rgba(248, 247, 243, 0.24);
+  /* Borders — on light/cream bg */
+  --color-border-light:  rgba(16, 16, 18, 0.10);
+  --color-border-light-hover: rgba(16, 16, 18, 0.24);
+
+  /* ═══ FONTS — references from globals.css next/font vars ════════════════ */
+  /* (actual families set in globals.css :root via CSS variable overrides) */
+
+  /* ═══ TYPOGRAPHY — exact px from growdient.com CSS ═══════════════════════ */
+
+  /* text-h0: marquee (100px in .text-h0 class, 160px in --_text---h0--font-size var) */
+  --text-h0:       clamp(4rem, 8vw, 6.25rem);   /* ≈100px max */
+
+  /* heading: hero H1 — "HELLO, WE ARE GROWDIENT STUDIO." — 88px, lh:76px */
+  --text-heading:  clamp(2.75rem, 6vw, 5.5rem); /* ≈88px max */
+
+  /* text-h1: project titles, .text-h1 class — 80px Instrument Serif */
+  --text-h1:       clamp(2rem, 5vw, 5rem);      /* ≈80px max */
+
+  /* no-margins (h2 hero statement) — 42px Instrument Serif */
+  --text-no-margins: clamp(1.5rem, 2.6vw, 2.625rem); /* ≈42px max */
+
+  /* text-h5: 28px Inter/sans heading */
+  --text-h5:       clamp(1.25rem, 1.75vw, 1.75rem); /* ≈28px max */
+
+  /* text-small: metadata, dates — 14px */
+  --text-small:    0.875rem;
+
+  /* label-small: UI labels — 10px Geist Mono uppercase */
+  --text-label:    0.625rem;
+
+  /* body: paragraph text — 16px */
+  --text-body:     1rem;
+
+  /* ═══ FONT WEIGHTS ════════════════════════════════════════════════════════ */
+
+  --weight-light:     300;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+
+  /* ═══ LINE HEIGHTS ════════════════════════════════════════════════════════ */
+
+  --leading-none:    0.88;
+  --leading-tight:   1.0;
+  --leading-snug:    1.1;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+
+  /* ═══ LETTER SPACING ══════════════════════════════════════════════════════ */
+
+  --tracking-tighter: -0.04em;
+  --tracking-tight:   -0.03em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.06em;
+  --tracking-wider:    0.10em;
+  --tracking-widest:   0.16em;
+
+  /* ═══ SPACING (8px base unit) ═════════════════════════════════════════════ */
+
+  --space-1:  0.25rem;    /*   4px */
+  --space-2:  0.5rem;     /*   8px */
+  --space-3:  0.75rem;    /*  12px */
+  --space-4:  1rem;       /*  16px */
+  --space-5:  1.25rem;    /*  20px */
+  --space-6:  1.5rem;     /*  24px */
+  --space-8:  2rem;       /*  32px */
+  --space-10: 2.5rem;     /*  40px */
+  --space-12: 3rem;       /*  48px */
+  --space-16: 4rem;       /*  64px */
+  --space-20: 5rem;       /*  80px */
+  --space-24: 6rem;       /*  96px */
+  --space-32: 8rem;       /* 128px */
+  --space-40: 10rem;      /* 160px */
+  --space-48: 12rem;      /* 192px */
+
+  /* ═══ CONTAINER ═══════════════════════════════════════════════════════════ */
+
+  --container-padding: clamp(1rem, 5vw, 3rem);
+  --container-max:     1600px;
+  --section-padding:   clamp(4rem, 10vh, 8rem);
+  --grid-gutter:       clamp(0.75rem, 1.5vw, 1.5rem);
+
+  /* ═══ BORDER RADIUS ═══════════════════════════════════════════════════════ */
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 999px;
+
+  /* ═══ Z-INDEX SCALE ═══════════════════════════════════════════════════════ */
+
+  --z-base:       0;
+  --z-above:      1;
+  --z-sticky:    20;
+  --z-fixed:     999;
+  --z-modal:     50;
+  --z-grain:     10; /* ниже navbar (30) — iOS Chrome canvas+blend-mode баг */
+  --z-cursor:   1001;
+  --z-transition: 998;
+  --z-loader:    999;
+
+  /* ═══ MOTION TOKENS — Locomotive DNA ════════════════════════════════════ */
+
+  /* Easings */
+  --ease-expo-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart-out:  cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-inout:      cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-inout-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Durations */
+  --dur-instant:  0ms;
+  --dur-micro:    100ms;
+  --dur-fast:     250ms;
+  --dur-normal:   400ms;
+  --dur-medium:   600ms;
+  --dur-slow:     800ms;
+  --dur-slower:   1200ms;
+  --dur-dramatic: 1800ms;
+
+  /* Stagger values (used in JS as seconds) */
+  --stagger-fast:   0.05;
+  --stagger-normal: 0.08;
+  --stagger-slow:   0.12;
+
+  /* ═══ BREAKPOINTS (reference only — use in JS/media queries) ══════════════ */
+  /* --bp-mobile:    0px    */
+  /* --bp-tablet:    768px  */
+  /* --bp-desktop:   1024px */
+  /* --bp-wide:      1440px */
+  /* --bp-ultrawide: 1920px */
+
+}
+
+/* ─── LIGHT THEME SECTIONS ─────────────────────────────────────────────────── */
+
+[data-theme="light"] {
+  --color-bg:        var(--color-cream);
+  --color-surface:   #ECEAE5;
+  --color-text-100:  rgba(12, 12, 12, 1.00);
+  --color-text-64:   rgba(12, 12, 12, 0.64);
+  --color-text-48:   rgba(12, 12, 12, 0.48);
+  --color-text-32:   rgba(12, 12, 12, 0.32);
+  --color-border:    rgba(12, 12, 12, 0.08);
+  --color-border-hover: rgba(12, 12, 12, 0.24);
+}

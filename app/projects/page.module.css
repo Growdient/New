@@ -1,0 +1,32 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   WORK PAGE — /projects
+   Dark section, tall enough for sticky hero + project list
+   Matches growdient.com: background #101012, overflow: clip
+   ────────────────────────────────────────────────────────────────────────────── */
+
+.section {
+  background-color: var(--color-bg);      /* #101012 — dark */
+  position: relative;
+  padding-bottom: 160px;
+}
+
+/* overflow: clip clips horizontal overflow on desktop.
+   Intentionally excluded on mobile — it breaks position:sticky on iOS Safari < 16 */
+@media (min-width: 768px) {
+  .section {
+    overflow: clip;
+  }
+}
+
+.container {
+  max-width: 1800px;
+  margin-inline: auto;
+  padding-inline: 32px;
+  position: relative;
+}
+
+@media (max-width: 479px) {
+  .container {
+    padding-inline: 16px;
+  }
+}

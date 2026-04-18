@@ -1,0 +1,278 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTACT HERO — full-viewport dark section
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── SECTION ──────────────────────────────────────────────────────────────── */
+.section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: var(--space-24) var(--container-padding);
+  background-color: var(--color-bg);
+  overflow: hidden;
+  color: var(--color-text-100);
+}
+
+/* ─── LEGAL DOTS ───────────────────────────────────────────────────────────── */
+.dots {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.dotsImg {
+  width: 1040px;
+  max-width: none;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ─── MAIN CONTAINER ───────────────────────────────────────────────────────── */
+.container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ─── SECTION LABEL ────────────────────────────────────────────────────────── */
+.sectionLabel {
+  color: var(--color-text-48);
+  letter-spacing: 0.12em;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ─── HERO HEADING ─────────────────────────────────────────────────────────── */
+.upperHalf {
+  height: calc(50vh - var(--space-24));
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.heroHeading {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 9.375rem); /* 150px max */
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-text-100);
+  margin: 0;
+}
+
+/* ─── LOWER HALF — grid 10% below center ──────────────────────────────────── */
+.lowerHalf {
+  flex: 1;
+  padding-top: 10vh;
+}
+
+/* ─── CONTACT GRID ─────────────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-16);
+}
+
+/* ─── TILE ─────────────────────────────────────────────────────────────────── */
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 332px;
+}
+
+/* ─── LARGE CITY / SOCIAL NAME ─────────────────────────────────────────────── */
+.tileCity {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-text-100);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+/* Same style but as an <a> link (for Social tile) */
+.tileCityLink {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-text-100);
+  text-decoration: none;
+  display: inline-block;
+  width: fit-content;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color var(--dur-fast) cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  margin-bottom: 5px;
+}
+
+.tileCityLink:hover {
+  color: var(--color-text-48);
+}
+
+.tileCityLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.tileCityLink:hover::after {
+  transform: scaleX(1);
+}
+
+/* ─── TILE LINKS CONTAINER ─────────────────────────────────────────────────── */
+.tileLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: 30px;
+}
+
+/* Phone + Whatsapp on the same row */
+.linkRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* ─── LINK STYLES ──────────────────────────────────────────────────────────── */
+.link {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  font-family: "42 Dotsans", var(--font-body), Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: var(--weight-regular);
+  color: var(--color-text-100);
+  text-decoration: none;
+  line-height: 30px;
+  padding-bottom: 2px;
+  transition: color var(--dur-fast) cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.link:hover {
+  color: var(--color-text-48);
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+.linkTel {
+  font-family: "42 Dotsans", var(--font-body), Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: var(--weight-regular);
+  color: var(--color-text-100);
+  text-decoration: none;
+  line-height: 30px;
+  transition: color var(--dur-fast) cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.linkTel:hover {
+  color: var(--color-text-48);
+}
+
+.linkWa {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  font-family: "42 Dotsans", var(--font-body), Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: var(--weight-regular);
+  color: var(--color-text-64);
+  text-decoration: none;
+  line-height: 30px;
+  padding-bottom: 2px;
+  transition: color var(--dur-fast) cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.linkWa:hover {
+  color: var(--color-text-100);
+}
+
+.linkWa::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.linkWa:hover::after {
+  transform: scaleX(1);
+}
+
+/* ─── RESPONSIVE ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-24);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: 106px; /* navbar 86px + gap 20px */
+    padding-bottom: var(--space-32);
+  }
+
+  .upperHalf {
+    height: auto;
+  }
+
+  .heroHeading {
+    font-size: clamp(3.6875rem, 10vw, 9.375rem); /* 64px → 59px on mobile */
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  .tileCity,
+  .tileCityLink {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+}

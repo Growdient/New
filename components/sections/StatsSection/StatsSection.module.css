@@ -1,0 +1,123 @@
+/* ─── SECTION ──────────────────────────────────────────────────────────────── */
+
+.section {
+  padding-top: 120px;
+  padding-bottom: 120px;
+  overflow: clip;
+  position: relative;
+  z-index: 2;
+}
+
+/* ─── CONTAINER ─────────────────────────────────────────────────────────────── */
+
+.container {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 92px;   /* matches Webflow main-container: margin 60px + padding 32px */
+  padding-right: 92px;
+}
+
+/* ─── 3-COLUMN GRID ─────────────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+}
+
+/* ─── EACH TILE ─────────────────────────────────────────────────────────────── */
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 264px;
+}
+
+/* All tiles — label centered over number */
+.tileLeft,
+.tileCenter,
+.tileRight {
+  align-items: center;
+  text-align: center;
+}
+
+/* ─── LABEL ─────────────────────────────────────────────────────────────────── */
+
+.label {
+  font-family: var(--font-42dotsans), Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: color-mix(in srgb, #f8f7f2 64%, transparent);
+}
+
+/* ─── NUMBER ─────────────────────────────────────────────────────────────────── */
+
+.number {
+  font-family: var(--font-instrument-serif), serif;
+  font-size: 160px;
+  line-height: 120px;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -2px;
+  color: color-mix(in srgb, #f8f7f2 88%, transparent);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────────────────── */
+
+/* Tablet — stack to column, reduce font, fix side padding */
+@media (max-width: 991px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+  .tile, .tileLeft, .tileCenter, .tileRight {
+    align-items: flex-start;
+    text-align: left;
+    min-height: auto;
+    gap: 32px;
+  }
+  .number {
+    font-size: 120px;
+    line-height: 90px;
+  }
+  /* 92px → 40px: иначе контент задавлен на 768-991px */
+  .container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 479px) {
+  .section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .grid {
+    gap: 80px;
+  }
+  .tile, .tileLeft, .tileCenter, .tileRight {
+    gap: 16px;
+  }
+  .label {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+  .number {
+    font-size: 120px;
+    line-height: 96px;
+    letter-spacing: -2px;
+  }
+}

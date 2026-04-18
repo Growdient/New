@@ -1,0 +1,106 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   GROWDIENT v2 — GRID SYSTEM
+   12-col desktop · 8-col tablet · 4-col mobile
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── CONTAINER ─────────────────────────────────────────────────────────────
+   Centered wrapper with fluid padding
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-padding);
+}
+
+/* ─── GRID ──────────────────────────────────────────────────────────────────
+   12-column CSS Grid — matches Webflow layout
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter);
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ─── COLUMN SPANS ──────────────────────────────────────────────────────────
+   Utility classes for column spanning
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.col-1  { grid-column: span 1; }
+.col-2  { grid-column: span 2; }
+.col-3  { grid-column: span 3; }
+.col-4  { grid-column: span 4; }
+.col-5  { grid-column: span 5; }
+.col-6  { grid-column: span 6; }
+.col-7  { grid-column: span 7; }
+.col-8  { grid-column: span 8; }
+.col-9  { grid-column: span 9; }
+.col-10 { grid-column: span 10; }
+.col-11 { grid-column: span 11; }
+.col-12 { grid-column: span 12; }
+
+/* ─── SECTION ───────────────────────────────────────────────────────────────
+   Full-width section wrapper with vertical padding
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.section {
+  padding-block: var(--section-padding);
+  width: 100%;
+}
+
+.section--flush {
+  padding-block: 0;
+}
+
+.section--light {
+  background-color: var(--color-cream);
+}
+
+/* ─── FLEX UTILITIES ─────────────────────────────────────────────────────── */
+
+.flex         { display: flex; }
+.flex-col     { flex-direction: column; }
+.items-center { align-items: center; }
+.items-start  { align-items: flex-start; }
+.items-end    { align-items: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-center  { justify-content: center; }
+.justify-end     { justify-content: flex-end; }
+.gap-2  { gap: var(--space-2); }
+.gap-4  { gap: var(--space-4); }
+.gap-6  { gap: var(--space-6); }
+.gap-8  { gap: var(--space-8); }
+.gap-12 { gap: var(--space-12); }
+
+/* ─── RESPONSIVE OVERRIDES ──────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11 {
+    grid-column: span 4;
+  }
+}

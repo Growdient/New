@@ -1,0 +1,300 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   GROWDIENT v2 — TYPOGRAPHY
+   Source: growdient.com Webflow CSS (reverse-engineered exact values)
+   ═══════════════════════════════════════════════════════════════════════════
+
+   Key finding: Instrument Serif is the PRIMARY heading font.
+   42DotSans is used only for .link and accent elements.
+   Body: Inter.  UI Labels: Geist Mono.
+
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── HEADING — Hero H1 ─────────────────────────────────────────────────────
+   Webflow: font-family: Instrument Serif; display:flex; margin:0;
+   Size comes from h1 tag: 88px / 76px lh / -2px ls / weight 400
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.heading {
+  font-family: var(--font-display);      /* = Instrument Serif */
+  font-size: var(--text-heading);        /* clamp → max ≈88px */
+  font-weight: var(--weight-regular);    /* 400 — serif is elegant, not bold */
+  line-height: 0.88;                     /* 76/88 ≈ 0.86 */
+  letter-spacing: -0.025em;             /* ≈ -2px at 88px */
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ─── TEXT H0 — Marquee / Big statement ─────────────────────────────────────
+   Webflow: Instrument Serif, 100px, line-height: 100%, weight by variable
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.text-h0 {
+  font-family: var(--font-display);
+  font-size: var(--text-h0);            /* clamp → max ≈100px */
+  font-weight: var(--weight-regular);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* ─── TEXT H1 — Project titles, inner page headings ─────────────────────────
+   Webflow: Instrument Serif, 80px, z-index: 1
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.text-h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);            /* clamp → max ≈80px */
+  font-weight: var(--weight-regular);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ─── NO-MARGINS — Hero H2 statement ────────────────────────────────────────
+   Webflow: Instrument Serif, 42px, line-height: 40px, letter-spacing: 0
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.no-margins {
+  font-family: var(--font-display);
+  font-size: var(--text-no-margins);    /* clamp → max ≈42px */
+  font-weight: var(--weight-regular);
+  line-height: 0.95;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+/* ─── TEXT H5 — Medium headings ──────────────────────────────────────────────
+   Webflow: var(--font--heading-sans), 28px, line-height: 32px, ls: -1px
+   heading-sans may be 42DotSans or Inter with medium weight
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.text-h5 {
+  font-family: var(--font-body);        /* Inter */
+  font-size: var(--text-h5);
+  font-weight: var(--weight-medium);   /* 500 */
+  line-height: 1.14;
+  letter-spacing: -0.036em;
+  margin: 0;
+}
+
+/* ─── TEXT SMALL ─────────────────────────────────────────────────────────────
+   Webflow: Inter, 14px, line-height: 20px
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.text-small {
+  font-family: var(--font-body);
+  font-size: var(--text-small);        /* 0.875rem = 14px */
+  font-weight: var(--weight-regular);
+  line-height: 1.43;
+  letter-spacing: 0;
+  display: block;
+  margin: 0;
+}
+
+/* ─── LABEL SMALL ────────────────────────────────────────────────────────────
+   Webflow: --_ui---label-small: Geist Mono, 10px, ls: 1px, weight by var
+   Used for tags, metadata, section labels
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.label-small {
+  font-family: var(--font-mono);       /* Geist Mono */
+  font-size: var(--text-label);        /* 0.625rem = 10px */
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+  display: block;
+}
+
+/* ─── LABEL SMALL-2 ──────────────────────────────────────────────────────────
+   Variant — slightly wider tracking
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.label-small-2 {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: var(--weight-regular);
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0;
+  display: block;
+}
+
+/* ─── OPACITY UTILITY CLASSES ────────────────────────────────────────────────
+   Light text variants (on dark sections)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.text-light-64 {
+  color: var(--color-text-64);
+}
+
+.text-light-48 {
+  color: var(--color-text-48);
+}
+
+.text-light-32 {
+  color: var(--color-text-32);
+}
+
+/* Dark text variants (on cream/light sections like hero) */
+.text-dark {
+  color: var(--color-dark-100);
+}
+
+.text-dark-64 {
+  color: var(--color-dark-64);
+}
+
+.text-dark-48 {
+  color: var(--color-dark-48);
+}
+
+/* ─── BLOG TYPOGRAPHY ────────────────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.blog-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: var(--weight-regular);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.blog-hero-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-h5);
+  font-weight: var(--weight-regular);
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--color-text-64);
+  margin: 0;
+}
+
+/* ─── ABOUT TRACK PHRASES ────────────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.text-track-about {
+  font-family: var(--font-body);
+  font-size: var(--text-h5);
+  font-weight: var(--weight-regular);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  max-width: 72ch;
+}
+
+/* ─── BODY BLOCK ─────────────────────────────────────────────────────────────
+   Webflow class text-block-2: Inter, body text
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.text-block-2 {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+  letter-spacing: 0;
+  max-width: 65ch;
+  color: var(--color-text-64);
+  margin: 0;
+}
+
+/* ─── MARQUEE TEXT ───────────────────────────────────────────────────────────
+   Webflow: marquee-text-large inherits from .text-h0 + color: light
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.marquee-text-large {
+  font-family: var(--font-display);
+  font-size: var(--text-h0);
+  font-weight: var(--weight-regular);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--color-text-100);
+}
+
+/* ─── UTILITY ────────────────────────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.utility-hidden {
+  display: none !important;
+}
+
+/* ─── PROSE — blog article body ──────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.prose {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+  color: var(--color-text-64);
+  max-width: 65ch;
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h5);
+  font-weight: var(--weight-regular);
+  line-height: 1.14;
+  letter-spacing: -0.03em;
+  color: var(--color-text-100);
+  margin: var(--space-12) 0 var(--space-4);
+}
+
+.prose h3 {
+  font-family: var(--font-body);
+  font-size: calc(var(--text-h5) * 0.875);
+  font-weight: var(--weight-medium);
+  line-height: 1.3;
+  color: var(--color-text-100);
+  margin: var(--space-8) 0 var(--space-3);
+}
+
+.prose p { margin: 0 0 var(--space-6); }
+.prose p:last-child { margin-bottom: 0; }
+
+.prose a {
+  color: var(--color-text-100);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--dur-fast) var(--ease-quart-out);
+}
+
+.prose a:hover { opacity: 0.7; }
+
+.prose strong {
+  font-weight: var(--weight-bold);
+  color: var(--color-text-100);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--space-6);
+  margin: 0 0 var(--space-6);
+}
+
+.prose li { margin-bottom: var(--space-2); }
+
+.prose blockquote {
+  border-left: 2px solid var(--color-border-hover);
+  padding-left: var(--space-6);
+  margin: var(--space-8) 0;
+  font-style: italic;
+  color: var(--color-text-100);
+  font-family: var(--font-editorial);
+  font-size: var(--text-h5);
+  line-height: 1.3;
+}
+
+/* ─── EDITORIAL ITALIC ACCENT ────────────────────────────────────────────────
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.text-editorial {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-weight: var(--weight-regular);
+}

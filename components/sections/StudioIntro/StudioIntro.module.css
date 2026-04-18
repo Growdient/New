@@ -1,0 +1,66 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   STUDIO INTRO — growdient.com .home-overlap-section
+   
+   Webflow:
+     background: bg-1 (#edebe7) — КРЕМОВЫЙ, продолжение hero
+     padding-top: spacing-120 (72px → 120px responsive)
+     overflow: clip
+     color: color--dark
+   
+   max-width wrap: 764px (wrap-home-about)
+   margin-bottom: spacing-160 на wrap
+   ────────────────────────────────────────────────────────────────────────────── */
+
+.section {
+  background-color: var(--color-cream);     /* #edebe7 — кремовый, продолжение hero */
+  color: var(--color-dark-100);
+  padding-top: clamp(4.5rem, 8vw, 7.5rem);  /* spacing-120: 72-120px */
+  padding-bottom: clamp(4rem, 8vw, 7.5rem);
+  overflow: clip;
+}
+
+.container {
+  padding-inline: clamp(1rem, 2vw, 2rem);   /* page-margin */
+  max-width: 1800px;                         /* --container--main */
+  margin-inline: auto;
+}
+
+/* .wrap-home-about — max-width: 764px, margin-bottom: spacing-160 */
+.text {
+  max-width: 764px;                           /* exact from audit */
+  font-family: var(--font-display);           /* Instrument Serif */
+  font-size: clamp(1.5rem, 2.75vw, 2.75rem); /* no-margins 42px + 4pt = 44px */
+  font-weight: 400;
+  line-height: 0.95;                          /* growdient.com: 40px/42px ≈ 0.952 */
+  letter-spacing: -0.01em;
+  color: var(--color-dark-88);                /* color--dark-88 */
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding-top: clamp(3.5rem, 6vw, 5rem);
+    padding-bottom: clamp(3rem, 5vw, 4rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    background-color: var(--color-bg);   /* dark — соответствует growdient.com mobile */
+    padding-top: 30px;
+    padding-bottom: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .container {
+    padding-inline: 1.25rem;
+  }
+
+  /* Mobile: белый текст на тёмном, крупнее — как на growdient.com */
+  .text {
+    color: var(--color-text-100);
+    font-size: clamp(1.5rem, 7vw, 2rem);       /* ~24-28px на 375-390px (+5pt) */
+    line-height: 1.07;
+    max-width: 100%;
+    margin-top: 0;
+  }
+}

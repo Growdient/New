@@ -1,0 +1,122 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOG CARD — Locomotive-quality card
+   Dark theme · hover: image scale + overlay · title opacity shift
+   ────────────────────────────────────────────────────────────────────────────── */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* ─── IMAGE ─── */
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--color-surface);
+  margin-bottom: var(--space-4);
+  flex-shrink: 0;
+}
+
+.cardFeatured .imageWrap {
+  aspect-ratio: 16 / 9;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-expo-out);
+  will-change: transform;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--color-black);
+  opacity: 0;
+  transition: opacity var(--dur-normal) var(--ease-quart-out);
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.card:hover .overlay {
+  opacity: 0.2;
+}
+
+/* ─── CONTENT ─── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ─── CATEGORY CHIP ─── */
+.category {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: #f8f7f3;
+  background: #101012;
+  border-radius: var(--radius-pill);
+  padding: 5px 10px;
+  margin-top: var(--space-3);
+}
+
+/* ─── TITLE ─── */
+.title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: var(--leading-snug);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--color-text-100);
+  margin: 0;
+}
+
+/* Inline span — background-image trick: works on every line when text wraps */
+.titleText {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 calc(100% - 3px);
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  padding-bottom: 3px;
+  transition: background-size var(--dur-normal) var(--ease-quart-out);
+}
+
+.card:hover .titleText {
+  background-size: 100% 1px;
+}
+
+.cardFeatured .title {
+  font-size: 36px;
+}
+
+/* ─── EXCERPT — Inter font per design spec ─── */
+.excerpt {
+  font-family: var(--font-inter);
+  font-size: var(--text-small); /* 14px */
+  line-height: 17px;            /* 14px + 3px = 17px */
+  color: #4B4B4B;
+  margin: 0;
+  /* Always exactly 2 lines on desktop */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 34px;             /* 2 × 17px — guarantees 2 lines always */
+}
+
+.cardFeatured .excerpt {
+  -webkit-line-clamp: 3;
+  min-height: 51px;             /* 3 × 17px */
+}

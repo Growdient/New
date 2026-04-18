@@ -1,0 +1,201 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   GROWDIENT v2 — GLOBAL STYLES
+   Reset · Base · Root
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import './tokens.css';
+@import './typography.css';
+@import './grid.css';
+@import './animations.css';
+
+/* ─── FONT CSS VARIABLES — map next/font vars to design tokens ─────────────── */
+
+:root {
+  /* Raveo Display — logo wordmark + giant footer wordmark */
+  --font-wordmark:  var(--font-raveo-display, "Times New Roman", Georgia, serif);
+  /* Instrument Serif — крупные заголовки H0/H1 */
+  --font-display:   var(--font-instrument-serif, "Times New Roman", Georgia, serif);
+  --font-editorial: var(--font-instrument-serif, "Times New Roman", Georgia, serif);
+  /* Inter — BODY font: тело текста, nav, описания */
+  --font-body:      var(--font-inter, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  /* Inter — вспомогательный fallback */
+  --font-sans:      var(--font-inter, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  /* Geist Mono — UI-лейблы */
+  --font-mono:      var(--font-geist-mono, "SF Mono", "Fira Code", Monaco, monospace);
+}
+
+/* ─── RESET ──────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis controls smooth scroll */
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-100);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  /* overflow-x: hidden убран — Lenis несовместим с overflow:hidden/clip на body.
+     Горизонтальный overflow контролируется на уровне конкретных секций. */
+  overscroll-behavior: none;
+}
+
+/* ─── TYPOGRAPHY BASE ──────────────────────────────────────────────────────── */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+p {
+  max-width: 65ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, textarea, select {
+  font: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ─── SELECTION ──────────────────────────────────────────────────────────── */
+
+::selection {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: var(--radius-pill);
+}
+
+/* ─── CURSOR HIDDEN (when custom cursor active) ─────────────────────────── */
+
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* ─── LENIS SCROLL CONTAINER ─────────────────────────────────────────────── */
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ─── FOCUS VISIBLE ──────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--color-text-64);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ─── UTILITY CLASSES ─────────────────────────────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.inset-0 {
+  inset: 0;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.object-position-center {
+  object-position: center;
+}
+
+/* ─── DIVIDER ─────────────────────────────────────────────────────────────── */
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+}
+

@@ -1,0 +1,115 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   ABOUT STATEMENT — "We merge instinct with intelligence"
+   Webflow: .text-h0 { font-size: 100px; text-align: center; margin-top: 100px }
+   Dark background, light text. Big editorial serif display text.
+   ────────────────────────────────────────────────────────────────────────────── */
+
+.section {
+  background-color: var(--color-bg);
+  padding-top: 120px;
+  padding-bottom: 120px;
+  overflow: clip;
+}
+
+.container {
+  padding-inline: 32px;
+  max-width: 1800px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* ─── BIG TEXT ─── */
+.bigText {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25em;
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  font-family: var(--font-display);      /* Instrument Serif */
+  font-size: var(--text-h0);             /* ~100px */
+  font-weight: var(--weight-regular);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--color-text-100);
+  will-change: clip-path, transform;
+}
+
+/* Italic for "intelligence" — editorial accent */
+.word:last-child {
+  font-style: italic;
+  color: var(--color-text-64);
+}
+
+/* ─── BOTTOM: sub-text + CTA ─── */
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-12);
+}
+
+.subText {
+  max-width: 764px;                      /* Webflow: .wrap-home-about { max-width: 764px } */
+}
+
+.cta {
+  flex-shrink: 0;
+}
+
+.ctaLink {
+  color: var(--color-text-100);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-quart-out);
+}
+
+.ctaLink:hover {
+  color: var(--color-text-64);
+}
+
+/* ─── INDUSTRIES ─── */
+.industries {
+  padding-top: 48px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.industriesLabel {
+  color: var(--color-text-48);
+}
+
+.industriesList {
+  max-width: none;
+  color: var(--color-text-64);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .section {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .container {
+    padding-inline: 16px;
+    gap: 48px;
+  }
+
+  .bigText {
+    gap: 0.15em;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+}
