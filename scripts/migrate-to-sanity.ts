@@ -107,15 +107,6 @@ async function migrateProjects() {
   for (const p of raw) {
     console.log(`\n📁 ${p.name}`)
 
-    const existing = await client.fetch(
-      `*[_type == "project" && slug.current == $slug][0]._id`,
-      { slug: p.slug }
-    )
-    if (existing) {
-      console.log(`  ⚠ already exists — skipping`)
-      continue
-    }
-
     // Thumbnail
     let thumbnail = null
     if (p.thumbnail?.url) {
@@ -168,15 +159,6 @@ async function migratePosts() {
 
   for (const p of raw) {
     console.log(`\n📝 ${p.title}`)
-
-    const existing = await client.fetch(
-      `*[_type == "post" && slug.current == $slug][0]._id`,
-      { slug: p.slug }
-    )
-    if (existing) {
-      console.log(`  ⚠ already exists — skipping`)
-      continue
-    }
 
     let mainImage = null
     if (p.coverImage?.url) {
