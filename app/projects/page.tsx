@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getPublishedProjects } from '@/lib/data/projects'
+import { sanityGetPublishedProjects } from '@/lib/sanity/queries'
 import WorkHero from '@/components/sections/WorkHero'
 import WorkProjectList from '@/components/sections/WorkProjectList'
 import s from './page.module.css'
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default function WorkPage() {
-  const projects = getPublishedProjects()
+export default async function WorkPage() {
+  const projects = await sanityGetPublishedProjects()
 
   return (
     <main>

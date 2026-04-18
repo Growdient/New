@@ -1,4 +1,5 @@
-import { sanityClient, urlFor } from './client'
+import { portableTextToHtml } from './ptToHtml'
+import { sanityClient } from './client'
 import type { Project, BlogPost, ImageAsset } from '@/lib/data/types'
 
 // ─── Projects ────────────────────────────────────────────────────────────────
@@ -55,14 +56,18 @@ function mapProject(raw: Record<string, unknown>): Project {
 
 export async function sanityGetProjects(): Promise<Project[]> {
   const raw = await sanityClient.fetch<Record<string, unknown>[]>(
-    `*[_type == "project"] | order(order asc) { ${PROJECT_FIELDS} }`
+    `*[_type == "project"] | order(order asc) { ${PROJECT_FIELDS} }`,
+    {},
+    { next: { revalidate: 60 } }
   )
   return raw.map(mapProject)
 }
 
 export async function sanityGetPublishedProjects(): Promise<Project[]> {
   const raw = await sanityClient.fetch<Record<string, unknown>[]>(
-    `*[_type == "project" && isDraft != true] | order(order asc) { ${PROJECT_FIELDS} }`
+    `*[_type == "project" && isDraft != true] | order(order asc) { ${PROJECT_FIELDS} }`,
+    {},
+    { next: { revalidate: 60 } }
   )
   return raw.map(mapProject)
 }
@@ -70,9 +75,21 @@ export async function sanityGetPublishedProjects(): Promise<Project[]> {
 export async function sanityGetProject(slug: string): Promise<Project | null> {
   const raw = await sanityClient.fetch<Record<string, unknown> | null>(
     `*[_type == "project" && slug.current == $slug][0] { ${PROJECT_FIELDS} }`,
-    { slug }
+    { slug },
+    { next: { revalidate: 60 } }
   )
   return raw ? mapProject(raw) : null
+}
+
+export async function sanityGetMoreWorkProjects(slug: string): Promise<[Project, Project] | [Project] | []> {
+  const published = await sanityGetPublishedProjects()
+  const idx = published.findIndex((p) => p.slug === slug)
+  if (published.length < 2) return []
+  const others = published.filter((_, i) => i !== idx)
+  const a = others[idx % others.length]
+  const b = others[(idx + 1) % others.length]
+  if (a === b) return [a]
+  return [a, b]
 }
 
 // ─── Blog Posts ───────────────────────────────────────────────────────────────
@@ -94,6 +111,9 @@ const POST_FIELDS = `
 `
 
 function mapPost(raw: Record<string, unknown>): BlogPost {
+  // Serialize Portable Text blocks to HTML string
+  const bodyHtml = raw.body ? portableTextToHtml(raw.body as unknown[]) : ''
+
   return {
     id: raw._id as string,
     title: raw.title as string,
@@ -101,7 +121,7 @@ function mapPost(raw: Record<string, unknown>): BlogPost {
     publishedAt: (raw.publishedAt as string) ?? '',
     excerpt: raw.excerpt as string | undefined,
     coverImage: (raw.coverImage as ImageAsset) ?? undefined,
-    body: raw.body as string,
+    body: bodyHtml,
     category: raw.category as string | undefined,
     metaTitle: raw.metaTitle as string | undefined,
     metaDescription: raw.metaDescription as string | undefined,
@@ -110,7 +130,9 @@ function mapPost(raw: Record<string, unknown>): BlogPost {
 
 export async function sanityGetPosts(): Promise<BlogPost[]> {
   const raw = await sanityClient.fetch<Record<string, unknown>[]>(
-    `*[_type == "post"] | order(publishedAt desc) { ${POST_FIELDS} }`
+    `*[_type == "post"] | order(publishedAt desc) { ${POST_FIELDS} }`,
+    {},
+    { next: { revalidate: 60 } }
   )
   return raw.map(mapPost)
 }
@@ -118,7 +140,35 @@ export async function sanityGetPosts(): Promise<BlogPost[]> {
 export async function sanityGetPost(slug: string): Promise<BlogPost | null> {
   const raw = await sanityClient.fetch<Record<string, unknown> | null>(
     `*[_type == "post" && slug.current == $slug][0] { ${POST_FIELDS} }`,
-    { slug }
+    { slug },
+    { next: { revalidate: 60 } }
   )
   return raw ? mapPost(raw) : null
+}
+
+// ─── Site Settings ────────────────────────────────────────────────────────────
+
+export interface SiteSettings {
+  siteTitle?: string
+  siteDescription?: string
+  ogImageUrl?: string
+  twitterHandle?: string
+  email?: string
+  phone?: string
+}
+
+export async function sanityGetSiteSettings(): Promise<SiteSettings> {
+  const raw = await sanityClient.fetch<Record<string, unknown> | null>(
+    `*[_type == "siteSettings"][0] {
+      siteTitle,
+      siteDescription,
+      "ogImageUrl": ogImage.asset->url,
+      twitterHandle,
+      email,
+      phone
+    }`,
+    {},
+    { next: { revalidate: 3600 } }
+  )
+  return raw ?? {}
 }

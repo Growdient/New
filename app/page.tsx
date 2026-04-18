@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getPublishedProjects } from '@/lib/data/projects'
+import { sanityGetPublishedProjects } from '@/lib/sanity/queries'
 import Hero from '@/components/sections/Hero'
 import StudioIntro from '@/components/sections/StudioIntro'
 import ProjectsReel from '@/components/sections/ProjectsReel'
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   },
 }
 
-export default function HomePage() {
-  const projects = getPublishedProjects()
+export default async function HomePage() {
+  const projects = await sanityGetPublishedProjects()
 
   return (
     <main>

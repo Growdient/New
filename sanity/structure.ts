@@ -5,6 +5,10 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title('Growdient')
     .items([
+      S.listItem()
+        .title('Site Settings')
+        .child(S.document().schemaType('siteSettings').documentId('siteSettings')),
+      S.divider(),
       S.documentTypeListItem('project').title('Projects'),
       S.divider(),
       S.documentTypeListItem('post').title('Blog posts'),

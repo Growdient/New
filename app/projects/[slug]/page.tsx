@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { getProject, getPublishedProjects, getMoreWorkProjects } from '@/lib/data/projects'
+import { sanityGetProject, sanityGetPublishedProjects, sanityGetMoreWorkProjects } from '@/lib/sanity/queries'
 import ProjectHero from '@/components/sections/ProjectHero'
 import ProjectBody from '@/components/sections/ProjectBody'
 import ProjectMoreWork from '@/components/sections/ProjectMoreWork'
@@ -11,12 +11,13 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return getPublishedProjects().map((p) => ({ slug: p.slug }))
+  const projects = await sanityGetPublishedProjects()
+  return projects.map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const project = getProject(slug)
+  const project = await sanityGetProject(slug)
   if (!project) return {}
   return {
     title: project.name,
@@ -27,10 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params
-  const project = getProject(slug)
+  const [project, moreProjects] = await Promise.all([
+    sanityGetProject(slug),
+    sanityGetMoreWorkProjects(slug),
+  ])
   if (!project) notFound()
-
-  const moreProjects = getMoreWorkProjects(slug)
 
   return (
     <main className={s.main}>

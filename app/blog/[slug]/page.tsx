@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { getPost, getPosts, getCategoryLabel, getEstimatedReadTime, extractHeadings } from '@/lib/data/blog'
+import { sanityGetPost, sanityGetPosts } from '@/lib/sanity/queries'
+import { getEstimatedReadTime, extractHeadings } from '@/lib/data/blog'
 import BlogArticleHero from '@/components/sections/BlogArticleHero'
 import BlogArticleBody from '@/components/sections/BlogArticleBody'
 
@@ -9,12 +10,13 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return getPosts().map((p) => ({ slug: p.slug }))
+  const posts = await sanityGetPosts()
+  return posts.map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = getPost(slug)
+  const post = await sanityGetPost(slug)
   if (!post) return {}
   return {
     title: post.metaTitle ?? post.title,
@@ -25,13 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogArticlePage({ params }: Props) {
   const { slug } = await params
-  const post = getPost(slug)
+  const [post, allPosts] = await Promise.all([
+    sanityGetPost(slug),
+    sanityGetPosts(),
+  ])
   if (!post) notFound()
 
-  const categoryLabel = getCategoryLabel(post.category)
   const readTime = getEstimatedReadTime(post.body)
   const tocItems = extractHeadings(post.body)
-  const allPosts = getPosts()
   const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3)
 
   return (
