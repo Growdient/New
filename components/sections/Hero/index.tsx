@@ -37,7 +37,7 @@ export default function Hero() {
       stagger: 0.055,
       duration: 0.9,
       delay: 0.15,
-      onComplete: () => gsap.set(wordEls, { willChange: 'auto' }),
+      onComplete: () => { gsap.set(wordEls, { willChange: 'auto' }) },
     })
 
     if (section && !window.matchMedia('(pointer: coarse)').matches) {
