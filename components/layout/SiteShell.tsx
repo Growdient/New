@@ -5,6 +5,7 @@ import Navbar from './Navbar'
 import ConditionalFooter from './ConditionalFooter'
 import PageTransition from './PageTransition'
 import AnimationsProvider from './AnimationsProvider'
+import LenisProvider from './LenisProvider'
 import CustomCursor from '@/components/effects/CustomCursor'
 import GrainOverlay from '@/components/effects/GrainOverlay'
 
@@ -17,7 +18,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <>
+    <LenisProvider>
       <AnimationsProvider />
       <GrainOverlay />
       <CustomCursor />
@@ -26,6 +27,6 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         {children}
         <ConditionalFooter />
       </PageTransition>
-    </>
+    </LenisProvider>
   )
 }

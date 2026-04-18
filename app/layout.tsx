@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import { fontRaveoDisplay, font42DotSans, fontInstrumentSerif, fontGeistMono, fontInter } from '@/lib/fonts'
-import LenisProvider from '@/components/layout/LenisProvider'
 import SiteShell from '@/components/layout/SiteShell'
 import '@/styles/globals.css'
 
@@ -74,9 +73,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       ].join(' ')}
     >
       <body>
-        <LenisProvider>
-          <SiteShell>{children}</SiteShell>
-        </LenisProvider>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   )
