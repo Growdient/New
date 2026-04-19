@@ -11,6 +11,7 @@
   pointer-events: none;
   will-change: transform;
   mix-blend-mode: difference;
+  z-index: var(--z-cursor);
   transition:
     opacity     200ms ease,
     transform   200ms ease,
@@ -33,6 +34,7 @@
   will-change: transform;
   display: flex;
   align-items: center;
+  z-index: var(--z-cursor);
   justify-content: center;
   mix-blend-mode: difference;
   transition:
