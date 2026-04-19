@@ -292,7 +292,7 @@
 .sidebar::-webkit-scrollbar { display: none; }
 
 .toc {
-  background: var(--color-surface); /* #ECEAE5 in light theme */
+  background: #ffffff;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
