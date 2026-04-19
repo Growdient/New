@@ -181,6 +181,7 @@
 
 .mobileNavLink {
   position: relative;
+  align-self: flex-start;
   font-family: var(--font-display);
   font-size: var(--text-h1);
   font-weight: var(--weight-regular);
