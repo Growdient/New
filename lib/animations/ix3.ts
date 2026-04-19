@@ -533,10 +533,4 @@ export function destroyIX3Animations() {
   _splits.length = 0
 
   ScrollTrigger.getAll().forEach((t) => t.kill())
-
-  // normalizeScroll creates an internal ScrollTrigger — it was just killed above.
-  // Re-enable immediately so scrub animations created by the next page work on iOS.
-  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
-    ScrollTrigger.normalizeScroll(true)
-  }
 }

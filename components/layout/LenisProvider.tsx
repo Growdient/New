@@ -39,13 +39,10 @@ export default function LenisProvider({ children }: LenisProviderProps) {
   useEffect(() => {
     // Touch devices: Lenis intercepts native iOS momentum scroll, causing
     // input lag and freeze. Use native scroll instead.
-    // BUT: iOS Safari suspends JS (rAF/ticker) during touch scroll gestures,
-    // so GSAP's scrub animations never update mid-swipe.
-    // ScrollTrigger.normalizeScroll(true) fixes this by intercepting touch
-    // events and driving scroll via GSAP's own rAF ticker — same principle
-    // as Lenis on desktop, but lightweight and built into ScrollTrigger.
+    // Scroll-driven animations on mobile use native scroll events directly
+    // (not GSAP ticker/scrub), so normalizeScroll is not needed and would
+    // intercept touch events before our scroll listeners can receive them.
     if (window.matchMedia('(pointer: coarse)').matches) {
-      ScrollTrigger.normalizeScroll(true)
       ScrollTrigger.refresh()
       return
     }
