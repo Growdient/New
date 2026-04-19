@@ -65,14 +65,23 @@ export default function AboutHero() {
       const initH  = getComputedStyle(imageWrap).height
       const initBR = getComputedStyle(imageWrap).borderRadius
 
-      // DEBUG — remove after diagnosis
-      console.log('[AboutHero] t=800ms', {
-        initW, initH, initBR,
-        scrollY: window.scrollY,
-        sectionTop: section.getBoundingClientRect().top,
-        innerH: window.innerHeight,
-        innerW: window.innerWidth,
-      })
+      // ─── DEBUG OVERLAY — видимые значения прямо на экране ────────────
+      const dbg = document.createElement('div')
+      dbg.id = '__about-debug'
+      dbg.style.cssText = [
+        'position:fixed', 'top:0', 'left:0', 'right:0', 'z-index:99999',
+        'background:rgba(0,0,0,0.85)', 'color:#0f0', 'font:12px/1.4 monospace',
+        'padding:8px', 'pointer-events:none', 'white-space:pre',
+      ].join(';')
+      dbg.textContent = [
+        `initW=${initW} initH=${initH}`,
+        `borderRadius=${initBR}`,
+        `scrollY=${window.scrollY}`,
+        `sectionTop=${section.getBoundingClientRect().top.toFixed(1)}`,
+        `vp=${window.innerWidth}x${window.innerHeight}`,
+      ].join('\n')
+      document.getElementById('__about-debug')?.remove()
+      document.body.appendChild(dbg)
 
       ScrollTrigger.refresh()
 
@@ -84,8 +93,15 @@ export default function AboutHero() {
           end: '+=100%',
           scrub: true,
           onUpdate: (self) => {
-            if (self.progress < 0.05) {
-              console.log('[AboutHero] ST progress', self.progress.toFixed(3), 'scrollY', window.scrollY)
+            const dbgEl = document.getElementById('__about-debug')
+            if (dbgEl) {
+              dbgEl.textContent = [
+                `initW=${initW} initH=${initH}`,
+                `borderRadius=${initBR}`,
+                `scrollY=${window.scrollY.toFixed(0)} progress=${self.progress.toFixed(3)}`,
+                `sectionTop=${section.getBoundingClientRect().top.toFixed(1)}`,
+                `vp=${window.innerWidth}x${window.innerHeight}`,
+              ].join('\n')
             }
           },
         },
