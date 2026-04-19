@@ -87,7 +87,6 @@ export default function Footer() {
           <p className={s.copyright}>
             © {YEAR} Growdient Studio. All rights reserved.
           </p>
-          <p className={s.location}>Kyiv · Lisbon</p>
         </div>
       </div>
     </footer>
