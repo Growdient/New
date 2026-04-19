@@ -37,6 +37,16 @@ export default function AboutHero() {
     const leftText  = leftTextRef.current
     const rightText = rightTextRef.current
     const overlay   = overlayRef.current
+    // DEBUG SYNC — показывает что компонент смонтировался
+    ;(function() {
+      const d = document.createElement('div')
+      d.id = '__dbg-mount'
+      d.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:999999;background:#00f;color:#fff;font:11px monospace;padding:4px;pointer-events:none'
+      d.textContent = `MOUNT refs: sec=${!!section} img=${!!imageWrap} lt=${!!leftText} rt=${!!rightText} ov=${!!overlay}`
+      document.getElementById('__dbg-mount')?.remove()
+      document.body.appendChild(d)
+    })()
+
     if (!section || !imageWrap || !leftText || !rightText || !overlay) return
 
     // ─── Load: image scales up, text slides in ───────────────────────────────
