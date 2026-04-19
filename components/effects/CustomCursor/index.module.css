@@ -20,6 +20,7 @@
   border-radius: 50%;
   pointer-events: none;
   will-change: transform;
+  mix-blend-mode: difference;
   transition:
     opacity     200ms ease,
     transform   200ms ease,
@@ -43,6 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  mix-blend-mode: difference;
   transition:
     opacity     300ms ease,
     width       400ms var(--ease-expo-out),
