@@ -72,5 +72,26 @@ export const blockContentType = defineType({
         }
       ]
     }),
+    defineArrayMember({
+      name: 'faqItem',
+      type: 'object',
+      title: 'FAQ Item',
+      fields: [
+        {
+          name: 'question',
+          type: 'string',
+          title: 'Question',
+        },
+        {
+          name: 'answer',
+          type: 'text',
+          title: 'Answer',
+          rows: 4,
+        },
+      ],
+      preview: {
+        select: { title: 'question' },
+      },
+    }),
   ],
 })

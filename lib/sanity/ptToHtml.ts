@@ -50,6 +50,16 @@ export function portableTextToHtml(blocks: unknown[]): string {
   while (i < blocks.length) {
     const block = blocks[i] as PTNode
 
+    if (block._type === 'faqItem') {
+      const q = (block.question as string) ?? ''
+      const a = (block.answer as string) ?? ''
+      const qEsc = q.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      const aEsc = a.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      html.push(`<details><summary>${qEsc}</summary><p>${aEsc}</p></details>`)
+      i++
+      continue
+    }
+
     if (block._type !== 'block') {
       i++
       continue
