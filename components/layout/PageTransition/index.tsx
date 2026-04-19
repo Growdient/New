@@ -52,29 +52,23 @@ export default function PageTransition({ children }: PageTransitionProps) {
     // ScrollTrigger scrub before the page is visible — causing the first
     // 1-2 swipes to show the animation at wrong progress.
     //
-    // Mobile (iOS Safari): touchmove preventDefault alone is unreliable if
-    // touchstart wasn't prevented first — browser already commits to scroll.
-    // Fix: block wheel + touchstart + touchmove, AND lock body with
-    // position:fixed (the only reliable iOS Safari scroll lock).
+    // iOS Safari: touchmove preventDefault is unreliable if touchstart wasn't
+    // prevented first (browser already commits to scroll gesture). Block all
+    // three events. NOTE: body { position:fixed } scroll lock is intentionally
+    // avoided — removing it causes iOS to jump to the previous page's scroll
+    // position, which breaks ScrollTrigger.refresh() measurements.
     const preventScroll = (e: Event) => { e.preventDefault() }
     document.addEventListener('wheel', preventScroll, { passive: false })
     document.addEventListener('touchstart', preventScroll, { passive: false })
     document.addEventListener('touchmove', preventScroll, { passive: false })
 
-    // position:fixed on body stops iOS Safari momentum scroll & rubber-band.
-    // Scroll is already 0 on route change (reset by LenisProvider), so no
-    // need to save/restore scroll position.
-    const prevBodyPosition = document.body.style.position
-    const prevBodyWidth    = document.body.style.width
-    document.body.style.position = 'fixed'
-    document.body.style.width    = '100%'
-
     const unlockScroll = () => {
       document.removeEventListener('wheel', preventScroll)
       document.removeEventListener('touchstart', preventScroll)
       document.removeEventListener('touchmove', preventScroll)
-      document.body.style.position = prevBodyPosition
-      document.body.style.width    = prevBodyWidth
+      // Force scroll to 0 before ScrollTrigger.refresh() recalculates positions.
+      // On mobile, native scroll may drift; ensure clean state.
+      window.scrollTo(0, 0)
     }
 
     let cleanup: (() => void) | undefined
