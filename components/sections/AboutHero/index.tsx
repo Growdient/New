@@ -70,23 +70,6 @@ export default function AboutHero() {
       const initH  = getComputedStyle(imageWrap).height
       const initBR = getComputedStyle(imageWrap).borderRadius
 
-      // ─── DEBUG OVERLAY ────────────────────────────────────────────────
-      const dbg = document.createElement('div')
-      dbg.id = '__about-debug'
-      dbg.style.cssText = [
-        'position:fixed', 'bottom:80px', 'left:0', 'right:0', 'z-index:99999',
-        'background:rgba(0,0,0,0.92)', 'color:#0f0', 'font:13px/1.5 monospace',
-        'padding:10px', 'pointer-events:none', 'white-space:pre',
-      ].join(';')
-      dbg.textContent = [
-        `W=${initW} H=${initH} BR=${initBR}`,
-        `scrollY=${window.scrollY} sTop=${section.getBoundingClientRect().top.toFixed(0)}`,
-        `vp=${window.innerWidth}x${window.innerHeight}`,
-        `progress=waiting...`,
-      ].join('\n')
-      document.getElementById('__about-debug')?.remove()
-      document.body.appendChild(dbg)
-
       ScrollTrigger.refresh()
 
       // ─── Scroll: image expands → fullscreen → blur ─────────────────────
@@ -96,17 +79,6 @@ export default function AboutHero() {
           start: 'top top',
           end: '+=100%',
           scrub: true,
-          onUpdate: (self) => {
-            const dbgEl = document.getElementById('__about-debug')
-            if (dbgEl) {
-              dbgEl.textContent = [
-                `W=${initW} H=${initH} BR=${initBR}`,
-                `scrollY=${window.scrollY.toFixed(0)} sTop=${section.getBoundingClientRect().top.toFixed(0)}`,
-                `vp=${window.innerWidth}x${window.innerHeight}`,
-                `progress=${self.progress.toFixed(3)} dir=${self.direction}`,
-              ].join('\n')
-            }
-          },
         },
       })
       scrollTl
