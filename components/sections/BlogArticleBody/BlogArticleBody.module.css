@@ -27,7 +27,7 @@
 /* ─── ARTICLE SECTION ────────────────────────────────────────────────────── */
 
 .article {
-  background: var(--color-bg); /* resolves to cream via data-theme="light" */
+  background: #ffffff;
   padding: clamp(3rem, 7vh, 5.5rem) var(--container-padding) clamp(4rem, 10vh, 8rem);
 }
 
@@ -173,7 +173,7 @@
   height: auto !important;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: var(--radius-md);
+  border-radius: 13px;
   margin: var(--space-10) 0 !important;
   background: var(--color-surface);
 }
