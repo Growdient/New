@@ -37,17 +37,12 @@ export default function AboutHero() {
     const leftText  = leftTextRef.current
     const rightText = rightTextRef.current
     const overlay   = overlayRef.current
-    // DEBUG SYNC — показывает что компонент смонтировался
-    ;(function() {
-      const d = document.createElement('div')
-      d.id = '__dbg-mount'
-      d.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:999999;background:#00f;color:#fff;font:11px monospace;padding:4px;pointer-events:none'
-      d.textContent = `MOUNT refs: sec=${!!section} img=${!!imageWrap} lt=${!!leftText} rt=${!!rightText} ov=${!!overlay}`
-      document.getElementById('__dbg-mount')?.remove()
-      document.body.appendChild(d)
-    })()
-
     if (!section || !imageWrap || !leftText || !rightText || !overlay) return
+
+    // ignoreMobileResize: iOS Safari fires resize events when address bar
+    // shows/hides on first swipe — this makes ScrollTrigger recalculate
+    // trigger positions mid-animation, causing the first-swipe bug.
+    ScrollTrigger.config({ ignoreMobileResize: true })
 
     // ─── Load: image scales up, text slides in ───────────────────────────────
     gsap.set(imageWrap, { xPercent: -50, yPercent: -50, scale: 0.88, opacity: 0, filter: 'blur(0px)' })
@@ -75,20 +70,19 @@ export default function AboutHero() {
       const initH  = getComputedStyle(imageWrap).height
       const initBR = getComputedStyle(imageWrap).borderRadius
 
-      // ─── DEBUG OVERLAY — видимые значения прямо на экране ────────────
+      // ─── DEBUG OVERLAY ────────────────────────────────────────────────
       const dbg = document.createElement('div')
       dbg.id = '__about-debug'
       dbg.style.cssText = [
-        'position:fixed', 'top:0', 'left:0', 'right:0', 'z-index:99999',
-        'background:rgba(0,0,0,0.85)', 'color:#0f0', 'font:12px/1.4 monospace',
-        'padding:8px', 'pointer-events:none', 'white-space:pre',
+        'position:fixed', 'bottom:80px', 'left:0', 'right:0', 'z-index:99999',
+        'background:rgba(0,0,0,0.92)', 'color:#0f0', 'font:13px/1.5 monospace',
+        'padding:10px', 'pointer-events:none', 'white-space:pre',
       ].join(';')
       dbg.textContent = [
-        `initW=${initW} initH=${initH}`,
-        `borderRadius=${initBR}`,
-        `scrollY=${window.scrollY}`,
-        `sectionTop=${section.getBoundingClientRect().top.toFixed(1)}`,
+        `W=${initW} H=${initH} BR=${initBR}`,
+        `scrollY=${window.scrollY} sTop=${section.getBoundingClientRect().top.toFixed(0)}`,
         `vp=${window.innerWidth}x${window.innerHeight}`,
+        `progress=waiting...`,
       ].join('\n')
       document.getElementById('__about-debug')?.remove()
       document.body.appendChild(dbg)
@@ -106,11 +100,10 @@ export default function AboutHero() {
             const dbgEl = document.getElementById('__about-debug')
             if (dbgEl) {
               dbgEl.textContent = [
-                `initW=${initW} initH=${initH}`,
-                `borderRadius=${initBR}`,
-                `scrollY=${window.scrollY.toFixed(0)} progress=${self.progress.toFixed(3)}`,
-                `sectionTop=${section.getBoundingClientRect().top.toFixed(1)}`,
+                `W=${initW} H=${initH} BR=${initBR}`,
+                `scrollY=${window.scrollY.toFixed(0)} sTop=${section.getBoundingClientRect().top.toFixed(0)}`,
                 `vp=${window.innerWidth}x${window.innerHeight}`,
+                `progress=${self.progress.toFixed(3)} dir=${self.direction}`,
               ].join('\n')
             }
           },
