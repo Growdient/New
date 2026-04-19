@@ -44,6 +44,8 @@ export default function AboutHero() {
     // trigger positions mid-animation, causing the first-swipe bug.
     ScrollTrigger.config({ ignoreMobileResize: true })
 
+    const mobile = window.matchMedia('(pointer: coarse)').matches
+
     // ─── Load: image scales up, text slides in ───────────────────────────────
     gsap.set(imageWrap, { xPercent: -50, yPercent: -50, scale: 0.88, opacity: 0, filter: 'blur(0px)' })
     gsap.set(leftText,  { x: 80 })
@@ -57,11 +59,11 @@ export default function AboutHero() {
 
     const splits: SplitText[] = []
     let scrollTl: gsap.core.Timeline
+    let mobileScrollHandler: (() => void) | null = null
 
     // Delay 800ms: guarantees CSS loaded + scroll=0 on BOTH hard refresh and
     // client navigation (PageTransition curtain hides at 700ms, unlockScroll
     // calls scrollTo(0,0) at 700ms → at 800ms everything is settled).
-    // Using fromTo with values read here — no invalidateOnRefresh needed.
     const timerId = setTimeout(() => {
       // Belt-and-suspenders: force scroll=0 before measuring positions.
       window.scrollTo(0, 0)
@@ -73,14 +75,12 @@ export default function AboutHero() {
       ScrollTrigger.refresh()
 
       // ─── Scroll: image expands → fullscreen → blur ─────────────────────
-      scrollTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: '+=100%',
-          scrub: true,
-        },
-      })
+      // On mobile, scrub relies on GSAP ticker (rAF). iOS Safari suspends
+      // rAF during touch scroll gestures; Android Chrome can also lose sync.
+      // Solution: on mobile, drive the timeline manually from native scroll
+      // events (passive: true) — these fire reliably on all browsers and
+      // are independent of rAF/ticker timing.
+      scrollTl = gsap.timeline({ paused: mobile })
       scrollTl
         .fromTo(imageWrap,
           { width: initW, height: initH },
@@ -91,6 +91,26 @@ export default function AboutHero() {
         .fromTo(leftText,  { x: 0 }, { x: '-45vw', duration: 0.45, ease: 'none' }, 0)
         .fromTo(rightText, { x: 0 }, { x:  '45vw', duration: 0.45, ease: 'none' }, 0)
         .fromTo(imageWrap, { filter: 'blur(0px)' }, { filter: 'blur(24px)', duration: 0.4, ease: 'sine.in' }, 0.6)
+
+      if (mobile) {
+        // Trigger end = section top + 100vh scroll distance (matches end: '+=100%')
+        const scrollDistance = window.innerHeight
+        mobileScrollHandler = () => {
+          const progress = Math.max(0, Math.min(1, window.scrollY / scrollDistance))
+          scrollTl.progress(progress)
+        }
+        mobileScrollHandler() // sync immediately
+        window.addEventListener('scroll', mobileScrollHandler, { passive: true })
+      } else {
+        // Desktop: ScrollTrigger scrub (Lenis keeps ticker alive via lenis.on('scroll'))
+        ScrollTrigger.create({
+          animation: scrollTl,
+          trigger: section,
+          start: 'top top',
+          end: '+=100%',
+          scrub: true,
+        })
+      }
 
       // ─── Phrase panels: chars reveal gray → white ──────────────────────
       const panelData = [
@@ -106,27 +126,49 @@ export default function AboutHero() {
         splits.push(split)
 
         split.chars.forEach((char) => {
-          gsap.fromTo(char,
-            { opacity: 0.3 },
-            {
-              opacity: 1,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: char,
-                start: 'bottom bottom',
-                end: 'bottom 40%',
-                scrub: true,
-              },
-            }
-          )
+          if (mobile) {
+            // Mobile: toggleActions instead of scrub — avoids rAF dependency.
+            // Chars snap to full opacity when scrolled into view.
+            gsap.fromTo(char,
+              { opacity: 0.3 },
+              {
+                opacity: 1,
+                duration: 0.3,
+                ease: 'power1.out',
+                scrollTrigger: {
+                  trigger: char,
+                  start: 'bottom bottom',
+                  toggleActions: 'play none none none',
+                },
+              }
+            )
+          } else {
+            gsap.fromTo(char,
+              { opacity: 0.3 },
+              {
+                opacity: 1,
+                ease: 'none',
+                scrollTrigger: {
+                  trigger: char,
+                  start: 'bottom bottom',
+                  end: 'bottom 40%',
+                  scrub: true,
+                },
+              }
+            )
+          }
         })
       })
-    })
+    }, 800)
 
     return () => {
       clearTimeout(timerId)
       loadTl.kill()
       scrollTl?.kill()
+      if (mobileScrollHandler) {
+        window.removeEventListener('scroll', mobileScrollHandler)
+        mobileScrollHandler = null
+      }
       splits.forEach((sp) => sp.revert())
       ScrollTrigger.getAll().forEach((st) => {
         const panelEls = [panel1Ref.current, panel2Ref.current, panel3Ref.current]
