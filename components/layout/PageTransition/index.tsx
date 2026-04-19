@@ -51,14 +51,30 @@ export default function PageTransition({ children }: PageTransitionProps) {
     // Users can scroll while the overlay covers the page, advancing the
     // ScrollTrigger scrub before the page is visible — causing the first
     // 1-2 swipes to show the animation at wrong progress.
-    // Fix: block wheel + touch scroll for the duration of the transition.
+    //
+    // Mobile (iOS Safari): touchmove preventDefault alone is unreliable if
+    // touchstart wasn't prevented first — browser already commits to scroll.
+    // Fix: block wheel + touchstart + touchmove, AND lock body with
+    // position:fixed (the only reliable iOS Safari scroll lock).
     const preventScroll = (e: Event) => { e.preventDefault() }
     document.addEventListener('wheel', preventScroll, { passive: false })
+    document.addEventListener('touchstart', preventScroll, { passive: false })
     document.addEventListener('touchmove', preventScroll, { passive: false })
+
+    // position:fixed on body stops iOS Safari momentum scroll & rubber-band.
+    // Scroll is already 0 on route change (reset by LenisProvider), so no
+    // need to save/restore scroll position.
+    const prevBodyPosition = document.body.style.position
+    const prevBodyWidth    = document.body.style.width
+    document.body.style.position = 'fixed'
+    document.body.style.width    = '100%'
 
     const unlockScroll = () => {
       document.removeEventListener('wheel', preventScroll)
+      document.removeEventListener('touchstart', preventScroll)
       document.removeEventListener('touchmove', preventScroll)
+      document.body.style.position = prevBodyPosition
+      document.body.style.width    = prevBodyWidth
     }
 
     let cleanup: (() => void) | undefined

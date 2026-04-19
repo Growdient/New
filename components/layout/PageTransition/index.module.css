@@ -6,4 +6,6 @@
   will-change: transform;
   /* pointer-events: none всегда — JS устанавливает 'all' только на время route transition */
   pointer-events: none;
+  /* Блокирует touch-scroll на iOS Safari когда overlay покрывает экран */
+  touch-action: none;
 }
