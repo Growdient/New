@@ -65,6 +65,15 @@ export default function AboutHero() {
       const initH  = getComputedStyle(imageWrap).height
       const initBR = getComputedStyle(imageWrap).borderRadius
 
+      // DEBUG — remove after diagnosis
+      console.log('[AboutHero] t=800ms', {
+        initW, initH, initBR,
+        scrollY: window.scrollY,
+        sectionTop: section.getBoundingClientRect().top,
+        innerH: window.innerHeight,
+        innerW: window.innerWidth,
+      })
+
       ScrollTrigger.refresh()
 
       // ─── Scroll: image expands → fullscreen → blur ─────────────────────
@@ -74,6 +83,11 @@ export default function AboutHero() {
           start: 'top top',
           end: '+=100%',
           scrub: true,
+          onUpdate: (self) => {
+            if (self.progress < 0.05) {
+              console.log('[AboutHero] ST progress', self.progress.toFixed(3), 'scrollY', window.scrollY)
+            }
+          },
         },
       })
       scrollTl
