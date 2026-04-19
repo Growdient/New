@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import s from './index.module.css'
 
 type CursorState = 'default' | 'hover_link' | 'hover_project' | 'hover_video' | 'hover_drag' | 'hidden'
@@ -24,6 +25,11 @@ export default function CustomCursor() {
 
   const [state, setState] = useState<CursorState>('hidden')
   const stateRef = useRef<CursorState>('hidden')
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     // Only on pointer:fine devices (desktop)
@@ -110,14 +116,19 @@ export default function CustomCursor() {
     }
   }, [])
 
-  return (
-    <div className={s.root} aria-hidden="true">
+  if (!mounted) return null
+
+  // Portal to body — bypasses any isolated stacking context so mix-blend-mode works
+  return createPortal(
+    <>
       <div
         ref={dotRef}
+        aria-hidden="true"
         className={`${s.dot} ${s[state]}`}
       />
       <div
         ref={ringRef}
+        aria-hidden="true"
         className={`${s.ring} ${s[state]}`}
       >
         <span ref={labelRef} className={s.label}>
@@ -126,6 +137,7 @@ export default function CustomCursor() {
           {state === 'hover_drag'    && 'Drag'}
         </span>
       </div>
-    </div>
+    </>,
+    document.body
   )
 }

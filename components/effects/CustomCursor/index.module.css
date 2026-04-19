@@ -1,13 +1,3 @@
-/* ─── Root container ─────────────────────────────────────────────────────── */
-
-.root {
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-cursor);
-  pointer-events: none;
-  overflow: hidden;
-}
-
 /* ─── Dot ─────────────────────────────────────────────────────────────────── */
 
 .dot {
