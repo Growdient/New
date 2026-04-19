@@ -53,7 +53,7 @@ export function portableTextToHtml(blocks: unknown[]): string {
     if (block._type === 'image' && (block.url || (block.asset as { url?: string })?.url)) {
       const src = (block.url as string) || (block.asset as { url?: string })?.url || ''
       const alt = (block.alt as string) ?? ''
-      html.push(`<img src="${src}" alt="${alt}" style="width:100%;border-radius:8px;margin:16px 0 24px">`)
+      html.push(`<img src="${src}" alt="${alt}" style="width:100%;border-radius:13px;margin:16px 0 24px">`)
       i++
       continue
     }
