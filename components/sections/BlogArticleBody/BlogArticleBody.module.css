@@ -250,7 +250,7 @@
 .prose :global(summary::after) {
   content: '+';
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: var(--weight-regular);
   color: var(--color-text-48);
   flex-shrink: 0;
