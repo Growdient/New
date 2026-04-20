@@ -19,26 +19,40 @@ type PTBlock = {
 type PTNode = PTBlock | { _type: string; [key: string]: unknown }
 
 function serializeSpans(spans: PTSpan[], markDefs: PTBlock['markDefs'] = []): string {
-  return spans
-    .map((span) => {
-      let text = span.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      const marks = span.marks ?? []
-      for (const mark of marks) {
-        if (mark === 'strong') text = `<strong>${text}</strong>`
-        else if (mark === 'em') text = `<em>${text}</em>`
-        else if (mark === 'underline') text = `<u>${text}</u>`
-        else if (mark === 'code') text = `<code>${text}</code>`
-        else {
-          // Could be a markDef key (e.g. link)
-          const def = markDefs?.find((d) => d._key === mark)
-          if (def?._type === 'link' && def.href) {
-            text = `<a href="${def.href}" target="_blank" rel="noopener noreferrer">${text}</a>`
-          }
+  const parts: string[] = []
+
+  for (let i = 0; i < spans.length; i++) {
+    const span = spans[i]
+    let text = span.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    const marks = span.marks ?? []
+    for (const mark of marks) {
+      if (mark === 'strong') text = `<strong>${text}</strong>`
+      else if (mark === 'em') text = `<em>${text}</em>`
+      else if (mark === 'underline') text = `<u>${text}</u>`
+      else if (mark === 'code') text = `<code>${text}</code>`
+      else {
+        const def = markDefs?.find((d) => d._key === mark)
+        if (def?._type === 'link' && def.href) {
+          text = `<a href="${def.href}" target="_blank" rel="noopener noreferrer">${text}</a>`
         }
       }
-      return text
-    })
-    .join('')
+    }
+
+    // Inject space at mark boundary when content would run together
+    if (i > 0) {
+      const prev = spans[i - 1]
+      const prevMarks = prev.marks ?? []
+      const crossesBoundary = prevMarks.length !== marks.length ||
+        !prevMarks.every((m) => marks.includes(m))
+      if (crossesBoundary && !prev.text.endsWith(' ') && !span.text.startsWith(' ')) {
+        parts.push(' ')
+      }
+    }
+
+    parts.push(text)
+  }
+
+  return parts.join('')
 }
 
 export function portableTextToHtml(blocks: unknown[]): string {

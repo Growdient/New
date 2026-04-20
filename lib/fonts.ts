@@ -13,38 +13,6 @@ export const fontRaveoDisplay = localFont({
   preload: true,
 })
 
-export const font42DotSans = localFont({
-  src: [
-    {
-      path: '../public/fonts/42dotsans-light.ttf',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/42dotsans-regular.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/42dotsans-medium.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/42dotsans-bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/42dotsans-extrabold.ttf',
-      weight: '800',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-42dotsans',
-  display: 'swap',
-  preload: true,
-})
 
 export const fontInstrumentSerif = localFont({
   src: [

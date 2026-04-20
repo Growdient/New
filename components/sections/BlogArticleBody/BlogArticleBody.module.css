@@ -143,8 +143,8 @@
 /* ─── INLINE ─────────────────────────────────────────────────────────────── */
 
 .prose :global(strong) {
-  font-weight: var(--weight-bold);
-  color: var(--color-text-100);
+  font-weight: var(--weight-medium);
+  color: inherit;
 }
 
 .prose :global(em) { font-style: italic; }

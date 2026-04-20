@@ -2,21 +2,11 @@
 
 # GROWDIENT v2 — Project Masterplan
 
-## ВАЖНО: Рабочий процесс
+## Рабочий процесс
 
-**Мы работаем только в `/growdient-v2` — проект на localhost, НЕ в Webflow.**
-- Dev-сервер всегда на `http://localhost:3000/`
-- **НИКОГДА не упоминать Webflow Designer и не предлагать открыть его.**
-- Никогда не использовать Webflow MCP Designer (`mcp__9ec1db7c...de_page_tool`, `element_tool`, `style_tool` и т.д.)
+- Dev: `http://localhost:3000/`
+- Prod: `https://growdient.com` (деплой через Vercel)
 - Все изменения — в файлах проекта (TSX + CSS Modules)
-- Webflow MCP использовать ТОЛЬКО для чтения данных (`data_sites_tool`, `data_cms_tool`) если нужны контентные данные
-
----
-
-## Цель
-Перенос сайта **growdient.com** (Webflow) → **Next.js 16** (App Router).
-Дизайн и анимации — **1:1** с оригиналом. Данные из **Sanity CMS** (в будущем).
-URL prod: `https://growdient.com`
 
 ---
 
@@ -25,24 +15,22 @@ URL prod: `https://growdient.com`
 | Слой | Решение |
 |------|---------|
 | Framework | Next.js 16.2.1, App Router, TypeScript |
+| Деплой | Vercel → growdient.com |
 | Стили | **CSS Modules** + `styles/tokens.css` (design tokens) |
 | Анимации | GSAP 3.14.2 + ScrollTrigger + SplitText |
 | Скролл | Lenis 1.x (подключён к GSAP ticker) |
-| Данные | JSON-файлы в `/data/` (будущее — Sanity CMS) |
+| Данные | Sanity CMS (`lib/sanity/`) |
 | Шрифты | Next.js local fonts (`lib/fonts.ts`) → CSS vars |
 
 ---
 
-## КРИТИЧНО: CSS-архитектура
+## CSS-архитектура
 
-### Используем CSS Modules — НЕ Webflow классы
-Файл `styles/webflow.css` (154KB оригинал) **НЕ импортируется** в проект.
 `globals.css` импортирует: `tokens.css` → `typography.css` → `grid.css` → `animations.css`.
 
 **Правило:** каждый компонент получает свой `.module.css` файл.
-Не используй raw Webflow классы в JSX — они не стилизованы.
 
-### Ключевые CSS-переменные (из `styles/tokens.css`)
+### Ключевые CSS-переменные (`styles/tokens.css`)
 ```css
 /* Цвета */
 --color-bg           /* #101012 — тёмный фон */
@@ -54,8 +42,9 @@ URL prod: `https://growdient.com`
 
 /* Шрифты (определены в globals.css) */
 --font-display       /* Instrument Serif — крупные заголовки */
---font-body          /* 42 Dotsans — тело, навигация */
+--font-body          /* Inter — тело, навигация */
 --font-mono          /* Geist Mono — UI-лейблы */
+--font-wordmark      /* Raveo Display — логотип, footer */
 
 /* Типографика */
 --text-heading       /* clamp → 88px max — hero h1 */
@@ -64,25 +53,20 @@ URL prod: `https://growdient.com`
 --text-label         /* 0.625rem = 10px */
 ```
 
-### Типографика h1 (из `styles/typography.css` + `styles/tokens.css`)
+### Light theme (`[data-theme="light"]`)
 ```css
-/* Hero headline — Instrument Serif 88px */
-font-family: var(--font-display);
-font-size: 88px;
-line-height: 76px;
-font-weight: 400;
-letter-spacing: -2px;
-
-/* Project title (text-h6 equivalent) — Instrument Serif 40px */
-font-family: var(--font-display);
-font-size: 40px;
-
-/* Service tag (label-small) — 42 Dotsans 10px ALL CAPS */
-font-family: var(--font-body);
-font-size: 10px;
-letter-spacing: 1px;
-text-transform: uppercase;
+--color-text-100: rgba(12,12,12,1.0)   /* near-black */
+--color-text-64:  rgba(12,12,12,0.64)  /* gray body text */
+--color-text-48:  rgba(12,12,12,0.48)  /* мета */
 ```
+
+---
+
+## Шрифты (`/public/fonts/`)
+- **Raveo Display** — логотип, footer wordmark "GROWDIENT"
+- **Instrument Serif** — все крупные заголовки (`--font-display`)
+- **Inter** — body text, навигация, описания (`--font-body`)
+- **Geist Mono** — UI лейблы (`--font-mono`)
 
 ---
 
@@ -90,7 +74,6 @@ text-transform: uppercase;
 
 ### IX3 движок (`lib/animations/ix3.ts`)
 Глобальный AnimationsProvider запускается один раз в `layout.tsx`.
-Ищет элементы по CSS-классам и HTML-атрибутам:
 
 | Атрибут / класс | Эффект |
 |---|---|
@@ -103,9 +86,8 @@ text-transform: uppercase;
 | `.footer-middle-link` + `.overlay-hover-footer` | footer link hover |
 | `.marquee-text.right/left` + `.marquee-images` | бесконечный marquee loop |
 
-### Паттерн анимации в компонентах
+### Паттерн word-mask entrance
 ```tsx
-// Word-mask entrance (useEffect в Client Component)
 const words = TEXT.split(' ')
 el.innerHTML = words.map(w =>
   `<span class="${s.wordWrap}"><span class="${s.word}">${w}</span></span>`
@@ -113,13 +95,10 @@ el.innerHTML = words.map(w =>
 gsap.set(el.querySelectorAll(`.${s.word}`), { y: '110%', opacity: 0 })
 gsap.to(wordEls, { y: '0%', opacity: 1, stagger: 0.045, duration: 1.0, ease: 'expo.out', delay: 0.2 })
 
-// CSS для word-mask:
+// CSS:
 .wordWrap { display: inline-block; overflow: hidden; vertical-align: bottom; }
 .word     { display: inline-block; }
 ```
-
-### Lenis + GSAP ticker (`components/layout/LenisProvider.tsx`)
-Lenis smooth scroll синхронизирован с GSAP ticker — `ScrollTrigger` работает корректно.
 
 ---
 
@@ -130,79 +109,61 @@ growdient-v2/
 ├── app/
 │   ├── layout.tsx              ← Root layout: Lenis, AnimationsProvider, Navbar, ConditionalFooter
 │   ├── page.tsx                ← Homepage (/)
-│   └── projects/
-│       ├── page.tsx            ← Work page (/projects) ✅
-│       └── page.module.css
+│   ├── projects/
+│   │   ├── page.tsx            ← Work page (/projects) ✅
+│   │   └── [slug]/page.tsx     ← Project detail ✅
+│   ├── blog/
+│   │   ├── page.tsx            ← Blog index ✅
+│   │   └── [slug]/page.tsx     ← Blog article ✅
+│   └── contact/page.tsx        ← Contact ✅
 ├── components/
 │   ├── layout/
-│   │   ├── Navbar.tsx          ← Pill nav: hamburger + logo + CTA
-│   │   ├── Footer.tsx          ← Info footer (не CTA-footer)
-│   │   ├── ConditionalFooter.tsx ← Footer только не на homepage
+│   │   ├── Navbar.tsx
+│   │   ├── Footer.tsx
+│   │   ├── ConditionalFooter.tsx
 │   │   ├── LenisProvider.tsx
 │   │   ├── AnimationsProvider.tsx
 │   │   └── PageTransition/
 │   ├── sections/
 │   │   ├── Hero/               ← Homepage hero: video + GSAP word animation
-│   │   ├── StudioIntro/        ← About overlap section
+│   │   ├── StudioIntro/
 │   │   ├── ProjectsReel/       ← Infinite horizontal photo strip
-│   │   ├── Marquee/            ← Gradient transition + бегущая строка услуг
+│   │   ├── Marquee/
 │   │   ├── ProjectGrid/        ← Homepage: 2-col alternating grid (dark bg)
 │   │   ├── ServicesSection/    ← Accordion list (cream bg)
 │   │   ├── StatsSection/       ← Animated counters (dark bg)
 │   │   ├── ContactCTA/         ← "Get on the train" full-bleed video footer
-│   │   ├── WorkHero/           ← /projects sticky centered h1 ✅
-│   │   └── WorkProjectList/    ← /projects alternating card grid ✅
+│   │   ├── WorkHero/           ← /projects sticky centered h1
+│   │   ├── WorkProjectList/    ← /projects alternating card grid
+│   │   ├── BlogArticleHero/
+│   │   ├── BlogArticleBody/    ← Prose + sticky ToC sidebar
+│   │   └── ContactHero/
 │   ├── ui/
 │   │   ├── Button.tsx
-│   │   └── ProjectCard.tsx     ← Used on Homepage grid
+│   │   └── ProjectCard.tsx
 │   └── effects/
 │       ├── CustomCursor/
 │       └── GrainOverlay/
 ├── lib/
-│   ├── animations/ix3.ts       ← Весь IX3 GSAP движок
+│   ├── animations/ix3.ts       ← GSAP анимации
+│   ├── sanity/
+│   │   ├── client.ts
+│   │   ├── queries.ts          ← sanityGetPost(), sanityGetPosts(), sanityGetProject()
+│   │   └── ptToHtml.ts         ← Portable Text → HTML сериализатор
 │   ├── data/
-│   │   ├── projects.ts         ← getPublishedProjects(), getProject(slug)
+│   │   ├── projects.ts
 │   │   ├── blog.ts
-│   │   └── types.ts            ← Project, BlogPost interfaces
-│   ├── fonts.ts                ← next/font local fonts → CSS vars
-│   └── hooks/useIX3.ts
+│   │   └── types.ts
+│   └── fonts.ts                ← next/font local fonts → CSS vars
 ├── data/
-│   ├── projects.json           ← 5 проектов с изображениями (CDN URLs)
-│   └── blog.json
+│   ├── projects.json
+│   └── blog.json               ← fallback (основные данные из Sanity)
 └── styles/
-    ├── globals.css             ← Импортирует tokens+typography+grid+animations
-    ├── tokens.css              ← Design tokens: цвета, шрифты, отступы
-    ├── typography.css          ← Типографические классы (.heading, .label-small и др.)
+    ├── globals.css
+    ├── tokens.css
+    ├── typography.css
     ├── grid.css
-    ├── animations.css
-    └── webflow.css             ← НЕ подключён (справочник оригинальных стилей)
-```
-
----
-
-## Данные (Project interface)
-```ts
-interface Project {
-  id, name, slug, client, year
-  services: string          // основной сервис (отображается под фото)
-  tags: string[]            // дополнительные теги
-  description: string
-  thumbnail: { url, alt }   // CDN URL (Webflow CDN)
-  images: ImageAsset[]
-  texts: string[]           // 3 параграфа описания
-  quote: { text, author, role }
-  liveWebsite?: string
-  awards?: string
-  order: number
-  isDraft: boolean
-}
-```
-
-### Хелперы данных
-```ts
-getPublishedProjects()     // все не-draft, сортировка по order
-getProject(slug)           // один проект по slug
-getAdjacentProjects(slug)  // prev/next для навигации
+    └── animations.css
 ```
 
 ---
@@ -211,30 +172,63 @@ getAdjacentProjects(slug)  // prev/next для навигации
 
 | Страница | URL | Статус |
 |---|---|---|
-| Homepage | `/` | ✅ Готово |
-| Work | `/projects` | ✅ Готово |
-| About | `/about` | ⬜ Нужно сделать |
-| Blog | `/blog` | ⬜ Нужно сделать |
-| Contact | `/contact` | ⬜ Нужно сделать |
-| Project detail | `/projects/[slug]` | ⬜ Нужно сделать |
+| Homepage | `/` | ✅ |
+| Work | `/projects` | ✅ |
+| Project detail | `/projects/[slug]` | ✅ |
+| Blog index | `/blog` | ✅ |
+| Blog article | `/blog/[slug]` | ✅ |
+| Contact | `/contact` | ✅ |
+| About | `/about` | ⬜ |
+
+---
+
+## Данные из Sanity
+
+Все данные из Sanity CMS через `lib/sanity/queries.ts`.
+Portable Text → HTML конвертируется в `lib/sanity/ptToHtml.ts`.
+
+### BlogPost interface
+```ts
+interface BlogPost {
+  id, title, slug, publishedAt
+  excerpt?: string
+  coverImage?: ImageAsset
+  body: string          // HTML (сконвертированный из PT)
+  category?: string
+  metaTitle?: string
+  metaDescription?: string
+}
+```
+
+### Project interface
+```ts
+interface Project {
+  id, name, slug, client, year
+  services: string
+  tags: string[]
+  description: string
+  thumbnail: ImageAsset
+  images: ImageAsset[]
+  texts: string[]
+  quote: { text, author, role }
+  liveWebsite?: string
+  awards?: string
+  order: number
+  isDraft: boolean
+}
+```
 
 ---
 
 ## SEO-требования для блог-статей
 
-При добавлении или редактировании статьи в `data/blog.json` **обязательно проверить**:
+- **Один H1 на страницу** — заголовок статьи (`post.title` → `BlogArticleHero`)
+- **H2** — основные разделы, **H3** — подразделы внутри H2
+- Нельзя пропускать уровни (H1 → H3, H2 → H4)
+- Related posts карточки — `<p>`, не `<h3>`
+- `extractHeadings()` в `lib/data/blog.ts` парсит только `h2` для ToC
 
-### Разметка заголовков (H1–H4)
-- **Один H1 на страницу** — заголовок статьи, задаётся в `post.title` (рендерится в `BlogArticleHero`)
-- `<h1>` должен содержать текст напрямую в теге, не только в `aria-label`
-- **H2** — основные разделы статьи
-- **H3** — подразделы внутри H2 (никогда не ставить H3 без родительского H2)
-- **H4** — опционально, подуровень H3
-- Запрещено пропускать уровни: H1 → H3 (минуя H2), H2 → H4 (минуя H3)
-- Карточки (related posts, превью) — **не использовать `<h3>`**, использовать `<p>` или `<span>`
-
-### Проверка перед публикацией
-Запустить после добавления статьи:
+### Проверка заголовков
 ```bash
 curl -s "http://localhost:3000/blog/[slug]" | python3 -c "
 import sys, re
@@ -245,23 +239,6 @@ for tag, content in headings:
     print(f'{tag}: {text}')
 "
 ```
-Ожидаемый результат: один h1, затем h2/h3 без пропусков уровней.
-
-### Мета-поля в blog.json (обязательные)
-```json
-{
-  "metaTitle": "...",         // до 60 символов, включает ключевое слово
-  "metaDescription": "...",   // 120–160 символов
-  "slug": "...",              // kebab-case, ключевое слово в начале
-  "excerpt": "...",           // краткое описание для превью
-  "publishedAt": "YYYY-MM-DD"
-}
-```
-
-### Известные особенности рендеринга
-- `BlogArticleHero`: `<h1>` использует GSAP word-mask анимацию — текст должен быть в теге как initial content, GSAP перезаписывает innerHTML на клиенте, но SSR/краулеры видят исходный текст
-- `BlogArticleBody`: related posts используют `<p>`, не `<h3>` (зафиксировано)
-- `extractHeadings()` в `lib/data/blog.ts` парсит только `h2` для ToC — убедиться что основные разделы именно H2
 
 ---
 
@@ -271,27 +248,15 @@ for tag, content in headings:
 2. **CSS-переменные** — из `tokens.css`, не хардкодить цвета/шрифты
 3. **GSAP в `useEffect`** — Client Components, с cleanup (`tl.kill()`, `ScrollTrigger.kill()`)
 4. **Анимации через word-mask** для заголовков: `wordWrap` + `word` паттерн
-5. **Sticky hero** — `position: sticky; top: 0; height: 100vh` + project list ниже в том же контейнере
+5. **Sticky hero** — `position: sticky; top: 0; height: 100vh`
 6. **Alternating grid** — `flex-direction: column`, `width: 50%`, `nth-child(even): margin-left: auto`
 7. **Изображения** — `<Image fill sizes="...">` внутри `position: relative` контейнера с явной высотой
-8. **Не дублировать** — ProjectGrid на homepage и WorkProjectList на /projects разные компоненты с разными контекстами
 
 ---
 
 ## Навигация (Navbar)
-Меню в бургере:
 - Work → `/projects`
 - About → `/about`
 - Blog → `/blog`
 - Contact → `/contact`
-
-CTA кнопка: "Let's work" → `/contact`
-
----
-
-## Шрифты (local, из `/public/fonts/`)
-- **Raveo Display** — логотип, footer wordmark "GROWDIENT"
-- **Instrument Serif** — все крупные заголовки
-- **42 Dotsans** — body text, навигация, описания
-- **Geist Mono** — UI лейблы
-- **Inter** — fallback
+- CTA: "Let's work" → `/contact`

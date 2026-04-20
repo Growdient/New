@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { fontRaveoDisplay, font42DotSans, fontInstrumentSerif, fontGeistMono, fontInter } from '@/lib/fonts'
+import { fontRaveoDisplay, fontInstrumentSerif, fontGeistMono, fontInter } from '@/lib/fonts'
 import SiteShell from '@/components/layout/SiteShell'
 import '@/styles/globals.css'
 
@@ -66,7 +66,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       lang="en"
       className={[
         fontRaveoDisplay.variable,
-        font42DotSans.variable,
         fontInstrumentSerif.variable,
         fontGeistMono.variable,
         fontInter.variable,

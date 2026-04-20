@@ -75,7 +75,6 @@ export default function Navbar() {
           <Link href="/blog"     className={s.mobileNavLink} onClick={closeMenu}>Blog</Link>
           <Link href="/contact"  className={s.mobileNavLink} onClick={closeMenu}>Contact</Link>
         </nav>
-        <p className={s.mobileFooter}>Kyiv · Lisbon</p>
       </div>
     </>
   )
