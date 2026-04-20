@@ -1,6 +1,6 @@
 import { portableTextToHtml } from './ptToHtml'
 import { sanityClient } from './client'
-import type { Project, BlogPost, ImageAsset } from '@/lib/data/types'
+import type { Project, BlogPost, ImageAsset, GalleryImage } from '@/lib/data/types'
 
 // ─── Projects ────────────────────────────────────────────────────────────────
 
@@ -18,8 +18,14 @@ const PROJECT_FIELDS = `
     alt
   },
   "images": images[] {
-    "url": asset->url,
-    alt
+    "desktop": desktop {
+      "url": asset->url,
+      alt
+    },
+    "mobile": mobile {
+      "url": asset->url,
+      alt
+    }
   },
   texts,
   "quote": {
@@ -52,7 +58,7 @@ function mapProject(raw: Record<string, unknown>): Project {
     tags: (raw.tags as string[]) ?? [],
     description: (raw.description as string) ?? '',
     thumbnail: (raw.thumbnail as ImageAsset) ?? null,
-    images: (raw.images as ImageAsset[]) ?? [],
+    images: (raw.images as GalleryImage[]) ?? [],
     texts: (raw.texts as string[]) ?? [],
     quote: (raw.quote as Project['quote']) ?? { text: '', author: '', role: '' },
     liveWebsite: raw.liveWebsite as string | undefined,
@@ -116,6 +122,10 @@ const POST_FIELDS = `
     "url": asset->url,
     alt
   },
+  "mobileImage": mobileImage {
+    "url": asset->url,
+    alt
+  },
   category,
   publishedAt,
   body,
@@ -140,6 +150,7 @@ function mapPost(raw: Record<string, unknown>): BlogPost {
     publishedAt: (raw.publishedAt as string) ?? '',
     excerpt: raw.excerpt as string | undefined,
     coverImage: (raw.coverImage as ImageAsset) ?? undefined,
+    mobileImage: (raw.mobileImage as ImageAsset) ?? undefined,
     body: bodyHtml,
     category: raw.category as string | undefined,
     metaTitle: raw.metaTitle as string | undefined,

@@ -123,18 +123,33 @@ export default function ProjectBody({ project }: Props) {
                   }
                   data-reveal
                 >
-                  {images.map((img, i) => (
-                    <div key={i} className={s.imageWrap}>
-                      <Image
-                        src={img.url}
-                        alt={img.alt ?? `${project.name} — ${sec.label}`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 45vw"
-                        className={s.image}
-                        unoptimized={img.url.endsWith('.gif')}
-                      />
-                    </div>
-                  ))}
+                  {images.map((img, i) => {
+                    const desktop = img.desktop
+                    const mobile = img.mobile ?? img.desktop
+                    if (!desktop) return null
+                    return (
+                      <div key={i} className={s.imageWrap}>
+                        <Image
+                          src={desktop.url}
+                          alt={desktop.alt ?? `${project.name} — ${sec.label}`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 45vw"
+                          className={`${s.image} ${s.imageDesktop}`}
+                          unoptimized={desktop.url.endsWith('.gif')}
+                        />
+                        {mobile && mobile.url !== desktop.url && (
+                          <Image
+                            src={mobile.url}
+                            alt={mobile.alt ?? `${project.name} — ${sec.label}`}
+                            fill
+                            sizes="100vw"
+                            className={`${s.image} ${s.imageMobile}`}
+                            unoptimized={mobile.url.endsWith('.gif')}
+                          />
+                        )}
+                      </div>
+                    )
+                  })}
                 </div>
               )}
 

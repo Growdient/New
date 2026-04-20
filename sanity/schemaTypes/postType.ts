@@ -36,7 +36,21 @@ export const postType = defineType({
     }),
     defineField({
       name: 'mainImage',
-      title: 'Cover image',
+      title: 'Cover image (desktop)',
+      type: 'image',
+      group: 'content',
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'mobileImage',
+      title: 'Cover image (mobile, vertical)',
       type: 'image',
       group: 'content',
       options: { hotspot: true },

@@ -29,6 +29,14 @@
   object-position: center;
 }
 
+.imageDesktop { display: block; }
+.imageMobile  { display: none; }
+
+@media (max-width: 768px) {
+  .imageDesktop { display: none; }
+  .imageMobile  { display: block; }
+}
+
 /* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {

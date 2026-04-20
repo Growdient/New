@@ -16,32 +16,53 @@
     },
     "images": [
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/694191f9c3eee622d3feb88a_2.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/694191f9c3eee622d3feb88a_2.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6941940f1f99c0ac5486f6e9_3.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6941940f1f99c0ac5486f6e9_3.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69419cc059dcf4e97ddfd6ef_4.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69419cc059dcf4e97ddfd6ef_4.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6941a541af42088220bb3b90_8.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6941a541af42088220bb3b90_8.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69419f3d3f9f1c75b2929c6a_7.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69419f3d3f9f1c75b2929c6a_7.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6941a06cfb1805e62831c87e_03.gif",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6941a06cfb1805e62831c87e_03.gif",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69418ee232e3de539b5b8a5b_1.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69418ee232e3de539b5b8a5b_1.jpg",
+          "alt": null
+        },
+        "mobile": null
       }
     ],
     "texts": [
@@ -77,68 +98,116 @@
     },
     "images": [
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d4f185709c5808684c1f_2.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d4f185709c5808684c1f_2.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d641de14203db57dad24_3.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d641de14203db57dad24_3.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69381c07c493a270eac9a9a3_6.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69381c07c493a270eac9a9a3_6.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69381c0fa9d328aa1da52974_7.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69381c0fa9d328aa1da52974_7.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936da482b27c0f6a17e278b_9.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936da482b27c0f6a17e278b_9.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936dc113c08fc0fd592234f_11.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936dc113c08fc0fd592234f_11.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d7178af0b3dceb8a2367_5.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d7178af0b3dceb8a2367_5.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d8e606e0ff5835b9e5f3_8.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d8e606e0ff5835b9e5f3_8.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936dcfb71a668849d454090_14.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936dcfb71a668849d454090_14.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936da482b27c0f6a17e278b_9.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936da482b27c0f6a17e278b_9.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/692ba2dc3f71462c74a656de_10.png",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/692ba2dc3f71462c74a656de_10.png",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/692ba2d1442715f1b42f9e57_12.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/692ba2d1442715f1b42f9e57_12.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936dd11dca635edde7b907f_12.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936dd11dca635edde7b907f_12.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936dd11dca635edde7b907f_12.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936dd11dca635edde7b907f_12.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69381c2912246654fbb3ff76_4.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69381c2912246654fbb3ff76_4.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d255d38525cfe8dcc932_1.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936d255d38525cfe8dcc932_1.jpg",
+          "alt": null
+        },
+        "mobile": null
       }
     ],
     "texts": [
@@ -178,56 +247,95 @@
     },
     "images": [
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69320436fd9f6427ebc777d5_1.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69320436fd9f6427ebc777d5_1.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936ba51b0b23911ef3194ec_3.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936ba51b0b23911ef3194ec_3.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6937201a5ebf43bdb4cadfa8_6.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6937201a5ebf43bdb4cadfa8_6.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6932ce14be7bba20fd25fa56_4.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6932ce14be7bba20fd25fa56_4.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936b8588155c522d3c0b803_8.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936b8588155c522d3c0b803_8.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936b8588155c522d3c0b803_8.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936b8588155c522d3c0b803_8.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936c84f4585e6019fab465c_10-1.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936c84f4585e6019fab465c_10-1.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936c9a86baec472a3f164c7_9.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936c9a86baec472a3f164c7_9.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936c67fa92dc516c3b230dd_10.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936c67fa92dc516c3b230dd_10.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6931d33f245353f82c7ca33e_Silk-Scarf-Mockup_Studio-Series-Vol-03_Free-Demo_By-Mocku.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6931d33f245353f82c7ca33e_Silk-Scarf-Mockup_Studio-Series-Vol-03_Free-Demo_By-Mocku.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936ba51b0b23911ef3194ec_3.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6936ba51b0b23911ef3194ec_3.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69320436fd9f6427ebc777d5_1.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69320436fd9f6427ebc777d5_1.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6932d156c5fd59aa1ef78b82_5.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6932d156c5fd59aa1ef78b82_5.jpg",
+          "alt": null
+        },
+        "mobile": null
       }
     ],
     "texts": [
@@ -263,28 +371,46 @@
     },
     "images": [
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693992add425a7fbbc108f4b_12.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693992add425a7fbbc108f4b_12.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69399603c74c6f5e5f8054fd_14.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69399603c74c6f5e5f8054fd_14.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69399fec44c1e1ffbaa4d37f_16.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69399fec44c1e1ffbaa4d37f_16.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69399b3cf9a69dc902295363_15.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/69399b3cf9a69dc902295363_15.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693881786b42f9ab1cd39fa0_9.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693881786b42f9ab1cd39fa0_9.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693881786b42f9ab1cd39fa0_9.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693881786b42f9ab1cd39fa0_9.jpg",
+          "alt": null
+        },
+        "mobile": null
       }
     ],
     "texts": [
@@ -319,76 +445,130 @@
     },
     "images": [
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6941de8bc9933821b786601d_4.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/6941de8bc9933821b786601d_4.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae2739c6c8ba1b2ba1b95_6.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae2739c6c8ba1b2ba1b95_6.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae29c84d2d7e233f2bbb0_3.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae29c84d2d7e233f2bbb0_3.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae34155bed99898ae821d_7.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae34155bed99898ae821d_7.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae1e58868d2ef4efdce9d_5.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae1e58868d2ef4efdce9d_5.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae2739c6c8ba1b2ba1b95_6.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae2739c6c8ba1b2ba1b95_6.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae1e58868d2ef4efdce9d_5.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae1e58868d2ef4efdce9d_5.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2510dc80455b4688838b_2.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2510dc80455b4688838b_2.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2510dc80455b4688838b_2.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2510dc80455b4688838b_2.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2c32c185671775bc2b3a_iphone3.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2c32c185671775bc2b3a_iphone3.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2de06a006307951396d1_Myself_Box_3_preview_02.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2de06a006307951396d1_Myself_Box_3_preview_02.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2dd766b949bcd11b8804_0_0.jpeg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2dd766b949bcd11b8804_0_0.jpeg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2e37ffff0a501fc6d9f5_Myself_Box_5_preview_01.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2e37ffff0a501fc6d9f5_Myself_Box_5_preview_01.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2de06a006307951396d1_Myself_Box_3_preview_02.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2de06a006307951396d1_Myself_Box_3_preview_02.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2db1591866d20d4af94e_4.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2db1591866d20d4af94e_4.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae34155bed99898ae821d_7.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae34155bed99898ae821d_7.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2c12bae4f8f609048932_12122.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693b2c12bae4f8f609048932_12122.jpg",
+          "alt": null
+        },
+        "mobile": null
       },
       {
-        "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae34155bed99898ae821d_7.jpg",
-        "alt": null
+        "desktop": {
+          "url": "https://cdn.prod.website-files.com/69273d8a5ceeda5caa00a53e/693ae34155bed99898ae821d_7.jpg",
+          "alt": null
+        },
+        "mobile": null
       }
     ],
     "texts": [

@@ -10,9 +10,10 @@ import s from './BlogArticleHero.module.css'
 interface Props {
   title: string
   coverImage?: ImageAsset
+  mobileImage?: ImageAsset
 }
 
-export default function BlogArticleHero({ title, coverImage }: Props) {
+export default function BlogArticleHero({ title, coverImage, mobileImage }: Props) {
   const imageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -51,8 +52,18 @@ export default function BlogArticleHero({ title, coverImage }: Props) {
             fill
             sizes="100vw"
             priority
-            className={s.coverImage}
+            className={`${s.coverImage} ${mobileImage ? s.imageDesktop : ''}`}
           />
+          {mobileImage && (
+            <Image
+              src={mobileImage.url}
+              alt={mobileImage.alt ?? title}
+              fill
+              sizes="100vw"
+              priority
+              className={`${s.coverImage} ${s.imageMobile}`}
+            />
+          )}
         </div>
       </div>
     </header>
