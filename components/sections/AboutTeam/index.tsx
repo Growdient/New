@@ -13,32 +13,32 @@ const CDN = 'https://cdn.prod.website-files.com/69273d885ceeda5caa00a47e'
 
 const TEAM = [
   {
-    name: 'SASHA',
+    name: 'Sasha',
     role: 'Art Director',
     image: `${CDN}/693760b91d779897454d53f2_me.webp`,
   },
   {
-    name: 'DANIIL',
+    name: 'Daniil',
     role: 'Head of Graphic Design',
     image: `${CDN}/6937682e079034203eb6595a_danil.webp`,
   },
   {
-    name: 'DENIS',
+    name: 'Denis',
     role: 'Head of UI/UX Design',
     image: `${CDN}/693768a78e7a1451bce22bdc_denis.webp`,
   },
   {
-    name: 'NOA',
+    name: 'Noa',
     role: 'Bizdev Partner / Canada',
     image: `${CDN}/693766fc08f4d119ab042444_noa2.webp`,
   },
   {
-    name: 'ANASTASIA',
+    name: 'Anastasia',
     role: 'Marketing Partner / Ukraine',
     image: `${CDN}/69375b8c18b7879ba00e235d_0b8b5bb05a6e8531fa4483c14db5aabd_nastya.jpg`,
   },
   {
-    name: 'ANDY',
+    name: 'Andy',
     role: 'Head of Web Development',
     image: `${CDN}/69273d8a5ceeda5caa00a71d_TeamImage-7.webp`,
   },
@@ -143,7 +143,7 @@ export default function AboutTeam() {
               </div>
               <div className={s.cardMeta}>
                 <span className={s.memberName}>{member.name}</span>
-                <span className={`label-small ${s.memberRole}`}>{member.role}</span>
+                <span className={s.memberRole}>{member.role}</span>
               </div>
             </div>
           ))}
