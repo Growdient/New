@@ -18,14 +18,13 @@ const PROJECT_FIELDS = `
     alt
   },
   "images": images[] {
-    "desktop": desktop {
-      "url": asset->url,
-      alt
-    },
-    "mobile": mobile {
-      "url": asset->url,
-      alt
-    }
+    "desktop": select(
+      _type == "galleryImage" => desktop { "url": asset->url, alt },
+      _type == "image" => { "url": asset->url, alt }
+    ),
+    "mobile": select(
+      _type == "galleryImage" => mobile { "url": asset->url, alt }
+    )
   },
   texts,
   "quote": {
