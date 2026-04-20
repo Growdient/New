@@ -26,6 +26,11 @@ export interface Project {
   awards?: string
   order: number
   isDraft: boolean
+  metaTitle?: string
+  metaDescription?: string
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: ImageAsset
 }
 
 export interface BlogPost {
@@ -39,4 +44,7 @@ export interface BlogPost {
   category?: string
   metaTitle?: string
   metaDescription?: string
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: ImageAsset
 }

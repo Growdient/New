@@ -19,10 +19,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const project = await sanityGetProject(slug)
   if (!project) return {}
+  const ogImg = project.ogImage?.url ?? project.thumbnail?.url
   return {
-    title: project.name,
-    description: project.description,
+    title: project.metaTitle ?? project.name,
+    description: project.metaDescription ?? project.description,
     alternates: { canonical: `https://growdient.com/projects/${project.slug}` },
+    openGraph: {
+      title: project.ogTitle ?? project.metaTitle ?? project.name,
+      description: project.ogDescription ?? project.metaDescription ?? project.description,
+      ...(ogImg && { images: [{ url: ogImg, width: 1200, height: 630 }] }),
+    },
   }
 }
 

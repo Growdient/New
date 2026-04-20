@@ -30,7 +30,15 @@ const PROJECT_FIELDS = `
   liveWebsite,
   awards,
   order,
-  isDraft
+  isDraft,
+  metaTitle,
+  metaDescription,
+  ogTitle,
+  ogDescription,
+  "ogImage": ogImage {
+    "url": asset->url,
+    alt
+  }
 `
 
 function mapProject(raw: Record<string, unknown>): Project {
@@ -51,6 +59,11 @@ function mapProject(raw: Record<string, unknown>): Project {
     awards: raw.awards as string | undefined,
     order: (raw.order as number) ?? 99,
     isDraft: (raw.isDraft as boolean) ?? false,
+    metaTitle: raw.metaTitle as string | undefined,
+    metaDescription: raw.metaDescription as string | undefined,
+    ogTitle: raw.ogTitle as string | undefined,
+    ogDescription: raw.ogDescription as string | undefined,
+    ogImage: (raw.ogImage as ImageAsset) ?? undefined,
   }
 }
 
@@ -107,7 +120,13 @@ const POST_FIELDS = `
   publishedAt,
   body,
   metaTitle,
-  metaDescription
+  metaDescription,
+  ogTitle,
+  ogDescription,
+  "ogImage": ogImage {
+    "url": asset->url,
+    alt
+  }
 `
 
 function mapPost(raw: Record<string, unknown>): BlogPost {
@@ -125,6 +144,9 @@ function mapPost(raw: Record<string, unknown>): BlogPost {
     category: raw.category as string | undefined,
     metaTitle: raw.metaTitle as string | undefined,
     metaDescription: raw.metaDescription as string | undefined,
+    ogTitle: raw.ogTitle as string | undefined,
+    ogDescription: raw.ogDescription as string | undefined,
+    ogImage: (raw.ogImage as ImageAsset) ?? undefined,
   }
 }
 

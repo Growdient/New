@@ -6,17 +6,23 @@ export const postType = defineType({
   title: 'Post',
   type: 'document',
   icon: DocumentTextIcon,
+  groups: [
+    { name: 'content', title: 'Content', default: true },
+    { name: 'seo', title: 'SEO' },
+  ],
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
+      group: 'content',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      group: 'content',
       options: { source: 'title' },
       validation: (Rule) => Rule.required(),
     }),
@@ -24,6 +30,7 @@ export const postType = defineType({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',
+      group: 'content',
       rows: 3,
       description: 'Short description shown in cards and meta tags',
     }),
@@ -31,6 +38,7 @@ export const postType = defineType({
       name: 'mainImage',
       title: 'Cover image',
       type: 'image',
+      group: 'content',
       options: { hotspot: true },
       fields: [
         defineField({
@@ -44,6 +52,7 @@ export const postType = defineType({
       name: 'category',
       title: 'Category',
       type: 'string',
+      group: 'content',
       options: {
         list: [
           { title: 'Branding Strategy', value: 'Branding Strategy' },
@@ -61,30 +70,61 @@ export const postType = defineType({
       name: 'author',
       title: 'Author',
       type: 'reference',
+      group: 'content',
       to: { type: 'author' },
     }),
     defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
+      group: 'content',
     }),
     defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+      group: 'content',
     }),
+    // SEO tab
     defineField({
       name: 'metaTitle',
-      title: 'Meta title',
+      title: 'Page title',
       type: 'string',
-      description: 'Up to 60 characters. Include main keyword.',
+      group: 'seo',
+      description: 'Shown in browser tab and Google results. 50–60 characters.',
+      validation: (Rule) => Rule.max(60).warning('Keep under 60 characters'),
     }),
     defineField({
       name: 'metaDescription',
       title: 'Meta description',
       type: 'text',
-      rows: 2,
-      description: '120–160 characters.',
+      rows: 3,
+      group: 'seo',
+      description: 'Shown in Google search results. 120–160 characters.',
+      validation: (Rule) => Rule.max(160).warning('Keep under 160 characters'),
+    }),
+    defineField({
+      name: 'ogTitle',
+      title: 'OG title',
+      type: 'string',
+      group: 'seo',
+      description: 'Title for social sharing (Facebook, LinkedIn, Telegram). Falls back to Page title.',
+    }),
+    defineField({
+      name: 'ogDescription',
+      title: 'OG description',
+      type: 'text',
+      rows: 3,
+      group: 'seo',
+      description: 'Description for social sharing. Falls back to Meta description.',
+    }),
+    defineField({
+      name: 'ogImage',
+      title: 'OG image',
+      type: 'image',
+      group: 'seo',
+      description: '1200×630px. Shown when sharing link in social media.',
+      options: { hotspot: true },
     }),
   ],
   preview: {
