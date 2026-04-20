@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import { fontRaveoDisplay, fontInstrumentSerif, fontGeistMono, fontInter } from '@/lib/fonts'
 import SiteShell from '@/components/layout/SiteShell'
 import '@/styles/globals.css'
+
+const GA_ID = 'G-LE145KW7TX'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://growdient.com'),
@@ -36,6 +39,9 @@ export const metadata: Metadata = {
     title: 'Growdient Studio',
     description: 'Brand Identity, UI/UX, Web Development',
     images: ['/assets/OG.jpg'],
+  },
+  verification: {
+    google: 'Uoh2xXX3za982jd4Vub9PUPtz-avZt28cbOmt70j4fg',
   },
   robots: {
     index: true,
@@ -72,6 +78,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
       ].join(' ')}
     >
       <body>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}');
+          `}
+        </Script>
         <SiteShell>{children}</SiteShell>
       </body>
     </html>
