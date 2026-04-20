@@ -90,14 +90,17 @@ export default function AboutHero() {
           { borderRadius: '0px', duration: 0.6, ease: 'none' }, 0)
         .fromTo(leftText,  { x: 0 }, { x: '-45vw', duration: 0.45, ease: 'none' }, 0)
         .fromTo(rightText, { x: 0 }, { x:  '45vw', duration: 0.45, ease: 'none' }, 0)
-        .fromTo(imageWrap, { filter: 'blur(0px)' }, { filter: 'blur(24px)', duration: 0.4, ease: 'sine.in' }, 0.6)
+        .fromTo(imageWrap, { filter: 'blur(0px)' }, { filter: 'blur(24px)', duration: 0.4, ease: 'none' }, 0.6)
 
       if (mobile) {
         // Trigger end = section top + 100vh scroll distance (matches end: '+=100%')
         const scrollDistance = window.innerHeight
+        // seek() is designed for bidirectional jumping — more reliable than
+        // progress() on a paused timeline when scrubbing in reverse.
+        const tlDur = scrollTl.duration()
         mobileScrollHandler = () => {
           const progress = Math.max(0, Math.min(1, window.scrollY / scrollDistance))
-          scrollTl.progress(progress)
+          scrollTl.seek(tlDur * progress)
         }
         mobileScrollHandler() // sync immediately
         window.addEventListener('scroll', mobileScrollHandler, { passive: true })
@@ -126,37 +129,22 @@ export default function AboutHero() {
         splits.push(split)
 
         split.chars.forEach((char) => {
-          if (mobile) {
-            // Mobile: toggleActions instead of scrub — avoids rAF dependency.
-            // Chars snap to full opacity when scrolled into view.
-            gsap.fromTo(char,
-              { opacity: 0.3 },
-              {
-                opacity: 1,
-                duration: 0.3,
-                ease: 'power1.out',
-                scrollTrigger: {
-                  trigger: char,
-                  start: 'bottom bottom',
-                  toggleActions: 'play none none none',
-                },
-              }
-            )
-          } else {
-            gsap.fromTo(char,
-              { opacity: 0.3 },
-              {
-                opacity: 1,
-                ease: 'none',
-                scrollTrigger: {
-                  trigger: char,
-                  start: 'bottom bottom',
-                  end: 'bottom 40%',
-                  scrub: true,
-                },
-              }
-            )
-          }
+          // scrub: true works on mobile too — ScrollTrigger updates opacity
+          // synchronously via its own scroll listener (no rAF dependency).
+          // toggleActions had no reverse behavior, causing fade-in on scroll-back.
+          gsap.fromTo(char,
+            { opacity: 0.3 },
+            {
+              opacity: 1,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: char,
+                start: 'bottom bottom',
+                end: 'bottom 40%',
+                scrub: true,
+              },
+            }
+          )
         })
       })
     }, 800)

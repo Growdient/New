@@ -181,4 +181,21 @@
     height: 90vw;
     border-radius: 1.25rem;
   }
+
+  /* Sticky releases at section.height − 100vh.
+     Panels end at 220vh. section=250vh → sticky releases at 150vh (mid panel 2),
+     30vh buffer after last panel (vs 100vh with 320vh). */
+  .section {
+    min-height: 250vh;
+  }
+
+  /* 40vh per panel vs 70vh default — less empty blurred space, same rhythm */
+  .panel {
+    min-height: 40vh;
+    padding: 2rem 1.5rem;
+  }
+
+  .panelText {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
 }
