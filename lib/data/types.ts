@@ -5,11 +5,6 @@ export interface ImageAsset {
   height?: number
 }
 
-export interface GalleryImage {
-  desktop: ImageAsset | null
-  mobile: ImageAsset | null
-}
-
 export interface Project {
   id: string
   name: string
@@ -20,7 +15,7 @@ export interface Project {
   tags: string[]
   description: string
   thumbnail: ImageAsset | null
-  images: GalleryImage[]
+  images: ImageAsset[]
   texts: string[]
   quote: {
     text: string
@@ -45,7 +40,6 @@ export interface BlogPost {
   publishedAt: string
   excerpt?: string
   coverImage?: ImageAsset
-  mobileImage?: ImageAsset
   body: string
   category?: string
   metaTitle?: string

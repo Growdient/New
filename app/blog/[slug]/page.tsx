@@ -48,7 +48,6 @@ export default async function BlogArticlePage({ params }: Props) {
       <BlogArticleHero
         title={post.title}
         coverImage={post.coverImage}
-        mobileImage={post.mobileImage}
       />
       <BlogArticleBody
         title={post.title}

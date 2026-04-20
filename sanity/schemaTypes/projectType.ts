@@ -79,35 +79,15 @@ export const projectType = defineType({
       group: 'content',
       of: [
         defineArrayMember({
-          name: 'galleryImage',
-          type: 'object',
-          title: 'Image',
+          type: 'image',
+          options: { hotspot: true },
           fields: [
             defineField({
-              name: 'desktop',
-              title: 'Desktop (horizontal)',
-              type: 'image',
-              options: { hotspot: true },
-              fields: [
-                defineField({ name: 'alt', title: 'Alt text', type: 'string' }),
-              ],
-            }),
-            defineField({
-              name: 'mobile',
-              title: 'Mobile (vertical)',
-              type: 'image',
-              options: { hotspot: true },
-              fields: [
-                defineField({ name: 'alt', title: 'Alt text', type: 'string' }),
-              ],
+              name: 'alt',
+              title: 'Alt text',
+              type: 'string',
             }),
           ],
-          preview: {
-            select: { media: 'desktop' },
-            prepare({ media }) {
-              return { title: 'Image', media }
-            },
-          },
         }),
       ],
     }),
