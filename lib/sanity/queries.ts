@@ -1,6 +1,6 @@
 import { portableTextToHtml } from './ptToHtml'
 import { sanityClient } from './client'
-import type { Project, BlogPost, ImageAsset } from '@/lib/data/types'
+import type { Project, BlogPost, ImageAsset, ContentBlock } from '@/lib/data/types'
 
 // ─── Projects ────────────────────────────────────────────────────────────────
 
@@ -23,6 +23,17 @@ const PROJECT_FIELDS = `
     "mobileImage": mobileImage {
       "url": asset->url,
       alt
+    }
+  },
+  "content": content[] {
+    _type,
+    _type == "textBlock" => { "text": text },
+    _type == "imageBlock" => {
+      "url": image.asset->url,
+      "alt": image.alt,
+      "mobileUrl": mobileImage.asset->url,
+      "mobileAlt": mobileImage.alt,
+      layout
     }
   },
   texts,
@@ -58,6 +69,7 @@ function mapProject(raw: Record<string, unknown>): Project {
     thumbnail: (raw.thumbnail as ImageAsset) ?? null,
     images: (raw.images as ImageAsset[]) ?? [],
     texts: (raw.texts as string[]) ?? [],
+    content: (raw.content as ContentBlock[]) ?? [],
     quote: (raw.quote as Project['quote']) ?? { text: '', author: '', role: '' },
     liveWebsite: raw.liveWebsite as string | undefined,
     awards: raw.awards as string | undefined,

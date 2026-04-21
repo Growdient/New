@@ -6,6 +6,10 @@ export interface ImageAsset {
   mobileImage?: ImageAsset
 }
 
+export type ContentBlock =
+  | { _type: 'textBlock'; text: string }
+  | { _type: 'imageBlock'; url: string; alt: string | null; mobileUrl?: string; mobileAlt?: string | null; layout: 'full' | 'half' }
+
 export interface Project {
   id: string
   name: string
@@ -18,6 +22,7 @@ export interface Project {
   thumbnail: ImageAsset | null
   images: ImageAsset[]
   texts: string[]
+  content: ContentBlock[]
   quote: {
     text: string
     author: string

@@ -77,6 +77,22 @@
   overflow: hidden;
 }
 
+.imageWrapFull {
+  position: relative;
+  width: 100%;
+  height: clamp(480px, 96vh, 1140px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.imageWrapHalf {
+  position: relative;
+  width: 100%;
+  height: clamp(320px, 44vw, 680px);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
 .image {
   object-fit: cover;
 }

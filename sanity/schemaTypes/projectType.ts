@@ -105,12 +105,84 @@ export const projectType = defineType({
       ],
     }),
     defineField({
+      name: 'content',
+      title: 'Content blocks (flexible order)',
+      type: 'array',
+      group: 'content',
+      description: 'Add text and images in any order. Use "half" layout to place two images side by side.',
+      of: [
+        defineArrayMember({
+          name: 'textBlock',
+          type: 'object',
+          title: 'Text',
+          fields: [
+            defineField({
+              name: 'text',
+              title: 'Text',
+              type: 'text',
+              rows: 4,
+            }),
+          ],
+          preview: {
+            select: { title: 'text' },
+            prepare({ title }) {
+              return { title: title?.slice(0, 60) ?? 'Text block', subtitle: 'Text' }
+            },
+          },
+        }),
+        defineArrayMember({
+          name: 'imageBlock',
+          type: 'object',
+          title: 'Image',
+          fields: [
+            defineField({
+              name: 'image',
+              title: 'Image',
+              type: 'image',
+              options: { hotspot: true },
+              fields: [
+                defineField({ name: 'alt', title: 'Alt text', type: 'string' }),
+              ],
+            }),
+            defineField({
+              name: 'mobileImage',
+              title: 'Mobile version (vertical)',
+              type: 'image',
+              options: { hotspot: true },
+              fields: [
+                defineField({ name: 'alt', title: 'Alt text', type: 'string' }),
+              ],
+            }),
+            defineField({
+              name: 'layout',
+              title: 'Layout',
+              type: 'string',
+              initialValue: 'full',
+              options: {
+                list: [
+                  { title: 'Full width', value: 'full' },
+                  { title: 'Half (2 columns)', value: 'half' },
+                ],
+                layout: 'radio',
+              },
+            }),
+          ],
+          preview: {
+            select: { media: 'image', layout: 'layout' },
+            prepare({ media, layout }) {
+              return { title: layout === 'half' ? 'Image — half' : 'Image — full', media }
+            },
+          },
+        }),
+      ],
+    }),
+    defineField({
       name: 'texts',
-      title: 'Body paragraphs',
+      title: 'Body paragraphs (legacy)',
       type: 'array',
       group: 'content',
       of: [defineArrayMember({ type: 'text' })],
-      description: 'Add 3 paragraphs of project description',
+      description: 'Legacy field — use Content blocks above for new projects',
     }),
     defineField({
       name: 'quoteText',
