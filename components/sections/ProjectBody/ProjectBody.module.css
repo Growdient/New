@@ -81,6 +81,14 @@
   object-fit: cover;
 }
 
+.imageDesktop { display: block; }
+.imageMobile  { display: none; }
+
+@media (max-width: 768px) {
+  .imageDesktop { display: none; }
+  .imageMobile  { display: block; }
+}
+
 /* ── Text block ─────────────────────────────────────────────────────────── */
 
 .textBlock {

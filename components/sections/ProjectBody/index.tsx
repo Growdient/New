@@ -130,9 +130,19 @@ export default function ProjectBody({ project }: Props) {
                         alt={img.alt ?? `${project.name} — ${sec.label}`}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 45vw"
-                        className={s.image}
+                        className={`${s.image} ${img.mobileImage ? s.imageDesktop : ''}`}
                         unoptimized={img.url.endsWith('.gif')}
                       />
+                      {img.mobileImage && (
+                        <Image
+                          src={img.mobileImage.url}
+                          alt={img.mobileImage.alt ?? `${project.name} — ${sec.label}`}
+                          fill
+                          sizes="100vw"
+                          className={`${s.image} ${s.imageMobile}`}
+                          unoptimized={img.mobileImage.url.endsWith('.gif')}
+                        />
+                      )}
                     </div>
                   ))}
                 </div>

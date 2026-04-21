@@ -19,7 +19,11 @@ const PROJECT_FIELDS = `
   },
   "images": images[] {
     "url": asset->url,
-    alt
+    alt,
+    "mobileImage": mobileImage {
+      "url": asset->url,
+      alt
+    }
   },
   texts,
   "quote": {

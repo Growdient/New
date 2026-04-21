@@ -3,6 +3,7 @@ export interface ImageAsset {
   alt: string | null
   width?: number
   height?: number
+  mobileImage?: ImageAsset
 }
 
 export interface Project {
