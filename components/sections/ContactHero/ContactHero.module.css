@@ -155,7 +155,7 @@
 .linkRow {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: 14px;
 }
 
 /* ─── LINK STYLES ──────────────────────────────────────────────────────────── */
@@ -215,7 +215,7 @@
   font-family: var(--font-body);
   font-size: 1.2rem;
   font-weight: var(--weight-regular);
-  color: var(--color-text-64);
+  color: var(--color-text-100);
   text-decoration: none;
   line-height: 30px;
   padding-bottom: 2px;
@@ -223,7 +223,7 @@
 }
 
 .linkWa:hover {
-  color: var(--color-text-100);
+  color: var(--color-text-48);
 }
 
 .linkWa::after {
