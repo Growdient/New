@@ -42,7 +42,7 @@ export default function StyleGuidePage() {
             Brand Identity · UI/UX Design · Web Development
           </TypeRow>
           <TypeRow label="text-small / locations, metadata" className="text-small text-light-48">
-            Lisbon · Kyiv · Operating worldwide
+            Lisbon · Operating worldwide
           </TypeRow>
           <TypeRow label="text-editorial / Instrument Serif italic" className="text-editorial text-h1">
             Design as language

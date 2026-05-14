@@ -34,7 +34,7 @@ export default function Footer() {
               Growdient
             </Link>
             <p className={s.tagline}>
-              Brand identity, UI/UX design and web development studio. Operating worldwide from Lisbon & Kyiv.
+              Brand identity, UI/UX design and web development studio. Operating worldwide from Lisbon.
             </p>
           </div>
 

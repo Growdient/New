@@ -4,7 +4,7 @@ import ContactHero from '@/components/sections/ContactHero'
 export const metadata: Metadata = {
   title: 'Contact — Growdient Studio',
   description:
-    'We don\'t just reply to emails, we start conversations that shape ideas. Get in touch with Growdient Studio — Lisbon and Kyiv.',
+    'We don\'t just reply to emails, we start conversations that shape ideas. Get in touch with Growdient Studio — Lisbon.',
   alternates: { canonical: 'https://growdient.com/contact' },
 }
 

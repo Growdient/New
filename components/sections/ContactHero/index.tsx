@@ -75,22 +75,6 @@ export default function ContactHero() {
               </div>
             </div>
 
-            {/* Kyiv */}
-            <div className={s.tile}>
-              <span className={s.tileCity}>Kyiv</span>
-              <div className={s.tileLinks}>
-                <a href="mailto:hi@growdient.com" className={s.link}>
-                  hi@growdient.com
-                </a>
-                <div className={s.linkRow}>
-                  <a href="tel:+380675621645" className={s.linkTel}>+380675621645</a>
-                  <a href="https://wa.me/380675621645" target="_blank" rel="noopener noreferrer" className={s.linkWa}>
-                    Whatsapp
-                  </a>
-                </div>
-              </div>
-            </div>
-
             {/* Social */}
             <div className={s.tile}>
               <a href="https://www.linkedin.com/company/growdient" target="_blank" rel="noopener noreferrer" className={s.tileCityLink}>

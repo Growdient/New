@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: '%s — Growdient Studio',
   },
   description:
-    'Growdient is a design studio turning brand identity design and web development into value. Operating worldwide from Lisbon & Kyiv.',
+    'Growdient is a design studio turning brand identity design and web development into value. Operating worldwide from Lisbon.',
   keywords: ['branding', 'UI/UX design', 'web development', 'brand identity', 'design studio'],
   authors: [{ name: 'Growdient Studio' }],
   creator: 'Growdient Studio',

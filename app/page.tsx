@@ -11,7 +11,7 @@ import StatsSection from '@/components/sections/StatsSection'
 export const metadata: Metadata = {
   title: 'Growdient Studio — Brand Identity, UI/UX, Web Development',
   description:
-    'Global AI-powered creative lab. Growdient is a design studio turning brand identity design and web development into value. Operating worldwide from Lisbon & Kyiv.',
+    'Global AI-powered creative lab. Growdient is a design studio turning brand identity design and web development into value. Operating worldwide from Lisbon.',
   alternates: {
     canonical: 'https://growdient.com',
   },
